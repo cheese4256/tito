@@ -10,6 +10,9 @@ import './style/site.scss';
 export class AppComponent {
   public constructor() {
     let params: string = window.location.search.substring(1);
+    // let element = document.getElementById('shortCode');
+    // let shortCode: string = element ? element.textContent : "no shortCode";
+    // console.log(shortCode);
     if (params
         && window.opener
         && window.opener.location.origin === window.location.origin) {

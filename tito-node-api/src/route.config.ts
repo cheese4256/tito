@@ -49,11 +49,15 @@ export class RouteConfig {
     });
 
     // stat routes
-    router.get('/stats/token', function(request: any, response: any) {
+    router.get('/stats/requestToken', function(request: any, response: any) {
       let controller = request.dependencyInjector.get(StatController);
-      controller.token(request, response);
+      controller.requestToken(request, response);
     });
-    router.get('/stats', function(request: any, response: any) {
+    router.post('/stats/accessToken', function(request: any, response: any) {
+      let controller = request.dependencyInjector.get(StatController);
+      controller.accessToken(request, response);
+    });
+    router.post('/stats', function(request: any, response: any) {
       let controller = request.dependencyInjector.get(StatController);
       controller.stats(request, response);
     });

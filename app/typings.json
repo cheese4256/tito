@@ -8,5 +8,7 @@
     "node": "registry:dt/node#6.0.0+20161019125345",
     "serve-static": "registry:dt/serve-static#0.0.0+20160606155157"
   },
-  "dependencies": {}
+  "dependencies": {
+    "lodash": "registry:npm/lodash#4.0.0+20161015015725"
+  }
 }

@@ -19,17 +19,26 @@ export class StatController extends ControllerBase<Stat> {
 
     this._service.stats(model)
       .then(r => {
-        httpResponse.send({
-          stats: "TODO"
-        });
+        httpResponse.send(r);
       })
       .catch((e: any) => {
         this.handleError(e, httpResponse);
       });
   }
 
-  public token(httpRequest: any, httpResponse: any): void {
+  public requestToken(httpRequest: any, httpResponse: any): void {
     this._service.requestToken()
+      .then(r => {
+        httpResponse.json(r);
+      })
+      .catch((e: any) => {
+        this.handleError(e, httpResponse);
+      });
+  }
+
+  public accessToken(httpRequest: any, httpResponse: any): void {
+    let model: any = httpRequest.body;
+    this._service.accessToken(model)
       .then(r => {
         httpResponse.json(r);
       })
