@@ -1,0 +1,11 @@
+<div class="tito_login">
+  <form (ngSubmit)="login()">
+    <h1>Login</h1>
+    <input type="email" name="email" placeholder="email" [(ngModel)]="currentSausage.email"/>
+    <input type="password" name="password" placeholder="password" [(ngModel)]="currentSausage.password"/>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+    <button class="btn btn-lg btn-default btn-block" type="button" (click)="google()">Google</button>
+    <!-- This button is just here for now to have a simple place to test -->
+    <button class="btn btn-lg btn-default btn-block" type="button" (click)="yahooStats()">Yahoo Stats</button>
+  </form>
+</div>

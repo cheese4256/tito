@@ -1,0 +1,12 @@
+{
+  "restartable": "rs",
+  "verbose": true,
+  "events": { },
+  "ignore": [
+    "data/"
+  ],
+  "watch": [
+    "dist/"
+  ],
+  "ext": "js json"
+}

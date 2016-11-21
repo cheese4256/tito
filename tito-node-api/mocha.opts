@@ -1,0 +1,4 @@
+--require build/spec/mocha-init.js
+--reporter dot
+--watch-extensions ts
+src/**/*.spec.ts

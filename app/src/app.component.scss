@@ -1,0 +1,15 @@
+//@import "./_common/component/_style/index.scss";
+
+@import "./header/header.component.scss";
+@import "./home/home.component.scss";
+@import "./login/login.component.scss";
+@import "./profile/profile.component.scss";
+@import "./registration/registration.component.scss";
+
+.tito_app {
+  height: 100%;
+  &_title {
+    text-align: center;
+    background-color: $light-blue;
+  }
+}

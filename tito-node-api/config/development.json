@@ -1,0 +1,11 @@
+{
+  "database": {
+    "connectionString": "localhost:27017/tito-node"
+  },
+  "jwt": {
+    "secret": "TODO..."
+  },
+  "google": {
+    "clientSecret": "En9EXpDcNbssGMp3Ws7uEApw"
+  }
+}

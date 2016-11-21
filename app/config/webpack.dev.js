@@ -1,0 +1,33 @@
+// vendor imports
+var webpack = require('webpack');
+var webpackMerge = require('webpack-merge');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+// shared configurations
+var commonConfig = require('./webpack.common.js');
+var helpers = require('./helpers');
+var settings = require('./settings/settings.dev.json');
+
+module.exports = [webpackMerge(commonConfig, {
+    devtool: 'inline-source-map',
+
+    output: {
+      path: helpers.root('dist'),
+      publicPath: 'http://localhost:8080/',
+      filename: '[name].js',
+      chunkFilename: '[id].chunk.js',
+      sourceMapFilename: '[name].map'
+    },
+
+    devServer: {
+      historyApiFallback: true,
+      stats: 'minimal'
+    },
+
+    plugins: [
+      new webpack.DefinePlugin({
+        'process.env': JSON.stringify(settings)
+      })
+    ]
+  })
+];

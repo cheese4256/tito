@@ -1,0 +1,22 @@
+<div class="tito_header">
+  <div class="row">
+    <div class="col-xs-1 tito_app_title">
+      <a href="/">Tito</a>
+    </div>
+    <div class="col-xs-1 offset-xs-8">
+      <a href="/">Home</a>
+    </div>
+    <!-- <div class="col-xs-1">
+      <a href="/register">Register</a>
+    </div> -->
+    <div class="col-xs-1">
+      <a href="/teams">Teams</a>
+    </div>
+    <div class="col-xs-1" *ngIf="!isAuthenticated()">
+      <a href="/login">Login</a>
+    </div>
+    <div class="col-xs-1" *ngIf="isAuthenticated()">
+      <a href="/logout">Logout</a>
+    </div>
+  </div>
+</div>
