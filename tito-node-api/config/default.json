@@ -4,5 +4,8 @@
   },
   "jwt": {
     "secret": ""
+  },
+  "google": {
+    "clientSecret": "En9EXpDcNbssGMp3Ws7uEApw"
   }
 }
