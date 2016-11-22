@@ -59,6 +59,13 @@ export class LoginComponent {
       });
   }
 
+  public getRequestTokenAndUserAuthorization(): void {
+    this.statService.getRequestTokenAndUserAuthorization()
+      .then((result: any) => {
+        console.log(`result: ${result}`);
+      });
+  }
+
   public getProtectedData(): void {
     // Use this to check the stat_id for the stat with the name: "Home Runs"
 //    let u: string = 'http://fantasysports.yahooapis.com/fantasy/v2/game/mlb/stat_categories';
