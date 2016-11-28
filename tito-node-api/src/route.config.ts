@@ -2,9 +2,9 @@
 import * as express from 'express';
 
 // controller imports
-import { SausageController } from './controller/sausage.controller';
-import { StatController } from './controller/stat.controller';
-import { TeamController } from './controller/team.controller';
+import { SausageController } from './controller/sausage/sausage.controller';
+import { StatController } from './controller/stat/stat.controller';
+import { TeamController } from './controller/team/team.controller';
 
 export class RouteConfig {
   public constructor(private _application: any) {
@@ -29,17 +29,17 @@ export class RouteConfig {
       let controller = request.dependencyInjector.get(SausageController);
       controller.get(request, response);
     });
-    router.post('/sausage/register', function(request: any, response: any) {
-      let controller = request.dependencyInjector.get(SausageController);
-      controller.register(request, response);
-    });
-    router.post('/sausage/login', function(request: any, response: any) {
-      let controller = request.dependencyInjector.get(SausageController);
-      controller.login(request, response);
-    });
     router.post('/sausage/google', function(request: any, response: any) {
       let controller = request.dependencyInjector.get(SausageController);
       controller.google(request, response);
+    });
+    router.post('/sausage/login', function(request:any, response: any) {
+      let controller = request.dependencyInjector.get(SausageController);
+      controller.login(request, response);
+    });
+    router.post('/sausage/register', function(request:any, response: any) {
+      let controller = request.dependencyInjector.get(SausageController);
+      controller.register(request, response);
     });
 
     // team routes

@@ -1,8 +1,14 @@
+// set the environment
+const ENV = process.env.NODE_ENV = process.env.ENV = 'spec';
+
 // register typescript extensions for mocha
 require('ts-node/register');
 
-// register sinon-chai extensions w/ assertion framework
+// register extensions w/ assertion framework
 var chai = require('chai');
+var chaiAsPromised = require('chai-as-promised');
+chai.use(chaiAsPromised);
+
 var sinonChai = require('sinon-chai');
 chai.use(sinonChai);
 

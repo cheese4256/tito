@@ -6,10 +6,11 @@
   "scripts": {
     "postinstall": "typings install && npm run mongo-init",
     "build": "rimraf dist && webpack --progress --profile --bail",
-    "start": "concurrently \"npm run watch\" \"npm run mongo-start\" \"sleep 4 && npm run start-nodemon\"",
+    "start": "concurrently \"npm run watch\" \"npm run mongo-start\" \"sleep 3 && npm run start-nodemon\"",
     "watch": "rimraf dist && webpack --watch --progress --profile --bail",
     "start-nodemon": "nodemon ./dist/api.js",
-    "test": "mocha --opts mocha.opts && rimraf test",
+    "test": "NODE_ENV=spec mocha --opts mocha.opts && rimraf test",
+    "test-watch": "NODE_ENV=spec mocha --watch --opts mocha.opts && rimraf test",
     "mongo-init": "mkdirp data/db",
     "mongo-start": "mongod --dbpath ./data/db"
   },
@@ -17,21 +18,21 @@
   "license": "UNLICENSED",
   "homepage": "http://www.liquidelvis.com/tito/forms/login.jsp",
   "dependencies": {
-    "bcrypt-nodejs": "0.0.3",
     "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",
     "config": "^1.24.0",
     "core-js": "^2.4.1",
-    "crypto": "0.0.3",
     "express": "^4.14.0",
     "express-dependency-injector": "^2.0.4",
+    "express-jwt": "^5.1.0",
+    "jsonwebtoken": "^7.1.9",
     "mongoose": "^4.6.7",
     "oauth": "^0.9.14",
-    "request": "^2.78.0",
-    "typescript": "^2.0.9"
+    "request": "^2.79.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
     "concurrently": "^3.1.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "jasmine-core": "^2.5.2",
@@ -44,8 +45,8 @@
     "sinon-chai": "^2.8.0",
     "ts-loader": "^0.9.5",
     "ts-node": "^1.7.0",
-    "typescript": "^2.0.6",
-    "typings": "^1.5.0",
+    "typings": "^2.0.0",
+    "validator": "^6.1.0",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2",
     "webpack-merge": "^0.15.0"

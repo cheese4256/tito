@@ -2,10 +2,9 @@
   "database": {
     "connectionString": "localhost:27017/tito-node"
   },
-  "jwt": {
-    "secret": "TODO..."
-  },
   "google": {
-    "clientSecret": "En9EXpDcNbssGMp3Ws7uEApw"
+    "apiUrl": "https://www.googleapis.com/plus/v1/people/me/openIdConnect",
+    "clientSecret": "En9EXpDcNbssGMp3Ws7uEApw",
+    "tokenUrl": "https://accounts.google.com/o/oauth2/token"
   }
 }

@@ -76,7 +76,7 @@ export class StatService extends ServiceBase {
       //   //   let code: string = event.data;
       //   //   popup.close();
       //   //   let yahooUrl: string =
-      //   //     this._deploymentContextService.buildApiUrl('/stats');
+      //   //     this._deploymentContextService.buildApiUrl('stats');
       //   //   this.http.post(yahooUrl,
       //   //     {
       //   //       code: code,

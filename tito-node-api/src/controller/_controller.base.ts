@@ -43,7 +43,7 @@ export abstract class ControllerBase<T> {
   }
 
   protected handleError(e: any, httpResponse: any) {
-    console.log(e);
+    console.log(JSON.stringify(e));
 
     httpResponse.status(500).send(e);
   }

@@ -72,7 +72,7 @@ export class LoginComponent {
     // Use this to get stats for an individual player
 //    let u: string = 'http://fantasysports.yahooapis.com/fantasy/v2/players;player_keys=mlb.p.9552/stats';
     // Use this to get stats for a list of players
-    let u: string = 'http://fantasysports.yahooapis.com/fantasy/v2/players;player_keys=mlb.p.9552,mlb.p.7264/stats';
+    let u: string = 'http://fantasysports.yahooapis.com/fantasy/v2/players;player_keys=mlb.p.9552,mlb.p.7264,mlb.p.7631/stats';
     this.statService.getData(u + '?format=json')
       .then((result: any) => {
         console.log(result);

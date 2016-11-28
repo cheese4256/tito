@@ -1,8 +1,13 @@
 import { ModelBase } from '../_model.base';
 
+import { Credential } from './credential';
+
 export interface Sausage extends ModelBase {
   email: string;
-  password: string;
-  googleId: string;
+  firstName: string;
+  lastName: string;
   displayName: string;
+  googleId: string;
+  password: string;
+  credential: Credential;
 }

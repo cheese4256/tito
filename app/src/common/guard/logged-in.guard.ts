@@ -8,7 +8,6 @@ export class LoggedInGuard implements CanActivate {
   constructor(private authenticationService: AuthenticationService) {}
 
   canActivate() {
-    console.log("???");
     return this.authenticationService.isAuthenticated();
   }
 }

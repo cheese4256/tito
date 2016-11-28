@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 // model imports
-import { Team } from '../../../tito-node-api/src/model/team';
+import { Team } from '../../../tito-node-api/src/model/tito/team';
 
 // service imports
 import { AuthenticationService } from '../common/service/authentication.service';

@@ -46,7 +46,7 @@ export class AuthenticationService {
           let code: string = event.data;
           popup.close();
           let googleUrl: string =
-            this._deploymentContextService.buildApiUrl('/sausage/google');
+            this._deploymentContextService.buildApiUrl('sausage/google');
           this.http.post(googleUrl,
             {
               code: code,
@@ -71,7 +71,8 @@ export class AuthenticationService {
 
 // TODO: The service using this service knows more about the url they want to use, so clean this up
     let apiUrl: string =
-      this._deploymentContextService.buildApiUrl('/sausage/login');
+      this._deploymentContextService.buildApiUrl('sausage/login');
+    console.log(apiUrl);
 
     return this.http.post(apiUrl,
       sausage,
@@ -83,11 +84,11 @@ export class AuthenticationService {
 //       let result: any = r.json();
 //       console.log(result);
 // // TODO: Check for expiration?
-//       if (result.auth_token) {
-//         console.log(result.auth_token);
-//         this.setToken(result.auth_token);
+//       if (result.token) {
+//         console.log(result.token);
+//         this.setToken(result.token);
 //         // localStorage.setItem(AuthenticationService.TITO_AUTH_TOKEN_NAME,
-//         //   result.auth_token);
+//         //   result.token);
 //         // this.loggedIn = true;
 //       }
 //       return result.sausage;
@@ -95,9 +96,9 @@ export class AuthenticationService {
 //       // let success: boolean = result.success;
 //       // console.log(success);
 //       // if (success) {
-//       //   console.log(result.auth_token);
+//       //   console.log(result.token);
 //       //   localStorage.setItem(AuthenticationService.TITO_AUTH_TOKEN_NAME,
-//       //     result.auth_token);
+//       //     result.token);
 //       //   this.loggedIn = true;
 //       // }
 //       // return success;
@@ -114,7 +115,7 @@ export class AuthenticationService {
     let headers = new Headers({'Content-Type': 'application/json'});
 
     let apiUrl: string =
-      this._deploymentContextService.buildApiUrl('/sausage/register');
+      this._deploymentContextService.buildApiUrl('sausage/register');
 
     return this.http.post(apiUrl,
       sausage,
@@ -125,11 +126,11 @@ export class AuthenticationService {
 //       let result: any = r.json();
 //       console.log(result);
 // // TODO: Check for expiration?
-//       if (result.auth_token) {
-//         console.log(result.auth_token);
-//         this.setToken(result.auth_token);
+//       if (result.token) {
+//         console.log(result.token);
+//         this.setToken(result.token);
 //         // localStorage.setItem(AuthenticationService.TITO_AUTH_TOKEN_NAME,
-//         //   result.auth_token);
+//         //   result.token);
 //         // this.loggedIn = true;
 //       }
 //       return result.sausage;
@@ -159,13 +160,13 @@ export class AuthenticationService {
 
   // private functions
   private authSuccessful(jwtResponse: any): Sausage {
-    // console.log(jwtResponse);
+    console.log(jwtResponse);
     let result: any = jwtResponse.json();
     // console.log(result);
 // TODO: Check for expiration?
-    if (result.auth_token) {
-      // console.log(result.auth_token);
-      this.setToken(result.auth_token);
+    if (result.token) {
+      // console.log(result.token);
+      this.setToken(result.token);
     }
     return result.sausage;
   }

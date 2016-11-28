@@ -1,6 +1,5 @@
 {
   "globalDependencies": {
-    "bcrypt-nodejs": "registry:dt/bcrypt-nodejs#0.0.0+20160316155526",
     "body-parser": "registry:dt/body-parser#0.0.0+20160619023215",
     "config": "registry:dt/config#0.0.0+20160317120654",
     "core-js": "registry:dt/core-js#0.0.0+20160914114559",
@@ -17,6 +16,7 @@
     "mongoose": "registry:npm/mongoose#4.3.5+20160628072220",
     "request": "registry:npm/request#2.69.0+20160428223725",
     "sinon": "registry:npm/sinon#1.16.0+20160723033700",
-    "sinon-chai": "registry:npm/sinon-chai#2.8.0+20160310030142"
+    "sinon-chai": "registry:npm/sinon-chai#2.8.0+20160310030142",
+    "validator": "registry:npm/validator#5.7.0+20160912014851"
   }
 }

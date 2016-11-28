@@ -5,6 +5,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 
 // configuration imports
+import { AuthenticationConfig } from './authentication.config';
 import { DependencyConfig } from './dependency.config';
 import { MongoConfig } from './mongo.config';
 import { RouteConfig } from './route.config';
@@ -23,7 +24,7 @@ application.use(express.static(staticRoot));
 application.use(bodyParser.urlencoded({extended: true}));
 application.use(bodyParser.json());
 
-// configure CORS policy & HTTP -> HTTPS redirect
+// configure CORS policy
 application.use(function(request, response, next) {
   // development needs a CORS policy
   if (env == 'development') {
@@ -33,6 +34,9 @@ application.use(function(request, response, next) {
   }
   next();
 });
+
+// jwt authentication initialization
+let authenticationConfig = new AuthenticationConfig(application);
 
 // dependency injection initialization
 let dependencyConfig = new DependencyConfig(application);

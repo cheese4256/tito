@@ -1,0 +1,12 @@
+/data
+/dist
+/log
+/node_modules
+npm-debug.log
+/temp
+/test
+/typings
+
+# system files
+.DS_Store
+Thumbs.db

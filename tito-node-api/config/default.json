@@ -2,10 +2,29 @@
   "database": {
     "connectionString": ""
   },
-  "jwt": {
-    "secret": ""
+  "crypto": {
+    "salt": {
+      "length": 32
+    },
+    "hash": {
+      "algorithm": "sha512"
+    }
+  },
+  "authentication": {
+    "algorithm": "HS512",
+    "secret": "xo5gpr7RQjMzl/9Be9DsXYH92BBMRGfa",
+    "expiresInSeconds": 600,
+    "ignorePaths": [
+      "/api",
+      "/api/sausage/google",
+      "/api/sausage/login",
+      "/api/sausage/register",
+      "/api/stats"
+    ]
   },
   "google": {
-    "clientSecret": "En9EXpDcNbssGMp3Ws7uEApw"
+    "apiUrl": "",
+    "clientSecret": "",
+    "tokenUrl": ""
   }
 }
