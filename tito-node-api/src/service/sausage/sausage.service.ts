@@ -41,7 +41,7 @@ export class SausageService extends ServiceBase<Sausage> {
     return promise;
   }
 
-  public google(model: any): Promise<Sausage> {
+  public google(model: any): Promise<any> {
     let apiUrl: string = config.get('google.apiUrl').toString();
     let tokenUrl: string = config.get('google.tokenUrl').toString();
     let clientSecret: string = config.get('google.clientSecret').toString();
@@ -56,7 +56,7 @@ export class SausageService extends ServiceBase<Sausage> {
       grant_type: 'authorization_code',
       client_secret: clientSecret
     };
-    let promise: Promise<Sausage> = new Promise<Sausage>((resolve, reject) => {
+    let promise: Promise<any> = new Promise<any>((resolve, reject) => {
       request.post(tokenUrl,
         {
           json: true,
@@ -71,12 +71,22 @@ export class SausageService extends ServiceBase<Sausage> {
             url: apiUrl,
             headers: headers,
             json: true}, (err: any, response: any, profile: any) => {
+              // console.log(`response: ${JSON.stringify(response)}`);
               // console.log(`profile: ${JSON.stringify(profile)}`);
               this._repository.findByGoogleId(profile.sub)
                 .then((sausage: Sausage) => {
                   // console.log(`sausage: ${JSON.stringify(sausage)}`);
                   if (sausage) {
-                    resolve(sausage);
+                    this._jwtService.jwtSign(sausage).then((token: string) =>{
+                      resolve({
+                        token: token,
+                        sausage: sausage
+                      });
+                    }).catch((e: any) => { // something unexpected happened in jwtService
+                      // reject with vendor error
+                      reject(e);
+                    });
+                    // resolve(sausage);
                   } else {
                     sausage = <Sausage>{};
                     sausage.email = profile.email;
@@ -84,8 +94,8 @@ export class SausageService extends ServiceBase<Sausage> {
                     sausage.displayName = profile.name;
                     sausage.googleId = profile.sub;
                     this.register(sausage)
-                      .then((sausage: Sausage) => {
-                        resolve(sausage);
+                      .then((data: any) => {
+                        resolve(data);
                       })
                       .catch((e: any) => {
                         reject(`Unable to register using Google: ${e}`)
@@ -162,6 +172,7 @@ export class SausageService extends ServiceBase<Sausage> {
 
           // generate an authentication token
           this._jwtService.jwtSign(d).then((token: string) => {
+            // console.log(`token: ${JSON.stringify(token)}`);
             resolve({
               token: token,
               sausage: d

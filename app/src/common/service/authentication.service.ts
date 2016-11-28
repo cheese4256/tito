@@ -160,7 +160,6 @@ export class AuthenticationService {
 
   // private functions
   private authSuccessful(jwtResponse: any): Sausage {
-    console.log(jwtResponse);
     let result: any = jwtResponse.json();
     // console.log(result);
 // TODO: Check for expiration?
