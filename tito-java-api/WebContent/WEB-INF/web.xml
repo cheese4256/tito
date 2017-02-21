@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://java.sun.com/xml/ns/javaee"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+  id="WebApp_ID" version="3.0">
+
+  <display-name>Tito Homeruns REST API</display-name>
+
+  <filter>
+  	<filter-name>CORS</filter-name>
+  	<filter-class>com.tito.filter.CorsFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>CORS</filter-name>
+  	<servlet-name>TestRest</servlet-name>
+  </filter-mapping>
+
+  <servlet>
+    <servlet-name>TestRest</servlet-name>
+    <servlet-class>
+  		com.tito.rest.TestRest
+  	</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>TestRest</servlet-name>
+    <url-pattern>/TestRest</url-pattern>
+  </servlet-mapping>
+</web-app>

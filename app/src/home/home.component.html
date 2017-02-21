@@ -1,3 +1,11 @@
 <div class="tito_home">
   This is the Home page
+  <div *ngIf="test">
+    <div>Test.val1 = {{test.val1}}</div>
+    <div>Test.val2 = {{test.val2}}</div>
+    <div>Test.val3 = {{test.val3}}</div>
+  </div>
+  <div>
+    <button (click)="getTestData()">Test</button>
+  </div>
 </div>

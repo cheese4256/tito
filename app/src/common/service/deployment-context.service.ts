@@ -8,7 +8,8 @@ export class DeploymentContextService {
   // constructor
   public constructor() {
     console.log(`DeploymentContextService - online with: ${JSON.stringify(process.env)}`);
-    this._baseUrl = `${process.env.API_HOST}/api`;
+//    this._baseUrl = `${process.env.API_HOST}/api`;
+    this._baseUrl = `${process.env.API_HOST}${process.env.API_PATH}`;
   }
 
   // public methods

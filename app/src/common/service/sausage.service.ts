@@ -18,8 +18,8 @@ export class SausageService extends ServiceBase {
 
   public constructor(protected _http: Http,
     protected _authenticationService: AuthenticationService,
-    protected _context: DeploymentContextService) {
-      super(_http, _context, 'sausage');
+    protected _deploymentContextService: DeploymentContextService) {
+      super(_http, _deploymentContextService, 'sausage');
     }
 
   // public methods
@@ -82,5 +82,14 @@ export class SausageService extends ServiceBase {
     //     console.log("Unable to register sausage");
     //     return err;
     //   });
+  }
+
+  public getTestData(): Promise<string> {
+    let headers = new Headers({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'});
+    let apiUrl: string =
+      this._deploymentContextService.buildApiUrl('TestRest');
+    return this._http.get(apiUrl, { headers })
+      .toPromise()
+      .then(res => res.json());
   }
 }

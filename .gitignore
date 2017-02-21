@@ -1,0 +1,29 @@
+# node.js
+npm-debug.log
+
+# app
+/app/dist
+/app/node_modules
+/app/typings
+
+# tito-node-api
+/tito-node-api/dist
+/tito-node-api/node_modules
+/tito-node-api/typings
+
+# tito-java-api
+/tito-java-api/.settings
+/tito-java-api/bin
+
+# eclipse
+.metadata
+.recommenders
+
+# misc
+#/log
+#/temp
+#/test
+
+# system files
+.DS_Store
+Thumbs.db
