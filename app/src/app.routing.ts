@@ -11,31 +11,33 @@ import { TeamsComponent } from './teams/teams.component';
 // services, etc.
 import { LoggedInGuard } from './common/guard/logged-in.guard';
 
+const appRoot: string = `${process.env.APP_ROOT}`;
+
 const appRoutes: Routes = [
   {
-    path: '',
+    path: appRoot,
     component: HomeComponent,
     pathMatch: 'full'
   },
   {
-    path: 'login',
+    path: appRoot + '/login',
     component: LoginComponent
   },
   {
-    path: 'logout',
+    path: appRoot + '/logout',
     component: LogoutComponent
   },
   {
-    path: 'profile',
+    path: appRoot + '/profile',
     component: ProfileComponent,
     canActivate: [LoggedInGuard]
   },
   {
-    path: 'registration',
+    path: appRoot + '/registration',
     component: RegistrationComponent
   },
   {
-    path: 'teams',
+    path: appRoot + '/teams',
     component: TeamsComponent,
     canActivate: [LoggedInGuard]
   }
