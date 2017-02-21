@@ -2,5 +2,6 @@
   "ENV": "development",
   "API_HOST": "http://localhost:8080",
   "API_PATH": "/tito-java-api",
+  "APP_HOST": "http://localhost:8080",
   "APP_ROOT": "tito2"
 }

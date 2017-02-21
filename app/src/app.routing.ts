@@ -20,24 +20,24 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: appRoot + '/login',
+    path: appRoot ? appRoot + '/login' : 'login',
     component: LoginComponent
   },
   {
-    path: appRoot + '/logout',
+    path: appRoot ? appRoot + '/logout' : 'logout',
     component: LogoutComponent
   },
   {
-    path: appRoot + '/profile',
+    path: appRoot ? appRoot + '/profile' : 'profile',
     component: ProfileComponent,
     canActivate: [LoggedInGuard]
   },
   {
-    path: appRoot + '/registration',
+    path: appRoot ? appRoot + '/registration' : 'registration',
     component: RegistrationComponent
   },
   {
-    path: appRoot + '/teams',
+    path: appRoot ? appRoot + '/teams' : 'teams',
     component: TeamsComponent,
     canActivate: [LoggedInGuard]
   }

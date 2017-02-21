@@ -6,14 +6,14 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 // shared configurations
 var commonConfig = require('./webpack.common.js');
 var helpers = require('./helpers');
-var settings = require('./settings/settings.dev.json');
+var settings = require('../api/staging.json');
 
 module.exports = [webpackMerge(commonConfig, {
     devtool: 'inline-source-map',
 
     output: {
-      path: helpers.root('dist'),
-      publicPath: 'http://localhost:8080/' + settings.APP_ROOT,
+      path: helpers.root('../dist'),
+      publicPath: settings.APP_HOST + '/' + settings.APP_ROOT,
       filename: '[name].js',
       chunkFilename: '[id].chunk.js',
       sourceMapFilename: '[name].map'
