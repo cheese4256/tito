@@ -12,7 +12,7 @@ npm-debug.log
 /tito-node-api/typings
 
 # tito-java-api
-/tito-java-api/.settings
+#/tito-java-api/.settings
 /tito-java-api/bin
 
 # eclipse
