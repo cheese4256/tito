@@ -13,6 +13,7 @@ import { LoggedInGuard } from './common/guard/logged-in.guard';
 
 const appRoot: string = `${process.env.APP_ROOT}`;
 
+// TODO
 const appRoutes: Routes = [
   {
     path: appRoot,
