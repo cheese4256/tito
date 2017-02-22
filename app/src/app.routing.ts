@@ -18,6 +18,10 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'admin',
+    component: AdminComponent
+  },
+  {
     path: 'login',
     component: LoginComponent
   },
