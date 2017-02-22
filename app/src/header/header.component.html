@@ -4,19 +4,19 @@
       <a href="/">Tito</a>
     </div>
     <div class="col-xs-1 offset-xs-8">
-      <a href="/">Home</a>
+      <a routerLink="">Home</a>
     </div>
     <!-- <div class="col-xs-1">
-      <a href="/register">Register</a>
+      <a routerLink="registration">Register</a>
     </div> -->
     <div class="col-xs-1">
-      <a href="/teams">Teams</a>
+      <a routerLink="teams">Teams</a>
     </div>
     <div class="col-xs-1" *ngIf="!isAuthenticated()">
-      <a href="/login">Login</a>
+      <a routerLink="login">Login</a>
     </div>
     <div class="col-xs-1" *ngIf="isAuthenticated()">
-      <a href="/logout">Logout</a>
+      <a routerLink="logout">Logout</a>
     </div>
   </div>
 </div>
