@@ -9,6 +9,7 @@ import { AppComponent }  from './app.component';
 import { routing } from './app.routing';
 
 // top level page
+import { AdminComponent } from './admin/admin.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -36,6 +37,7 @@ import { LoggedInGuard } from './common/guard/logged-in.guard';
     routing
   ],
   declarations: [
+    AdminComponent,
     AppComponent,
     HomeComponent,
     HeaderComponent,
