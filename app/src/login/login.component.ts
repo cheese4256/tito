@@ -18,13 +18,16 @@ export class LoginComponent {
   // public properties
   public currentSausage: Sausage;
   public rememberMe: boolean;
+  public year: number;
   @ViewChild('username')
   private _usernameInput: any;
 
   public constructor(private authenticationService: AuthenticationService,
     private sausageService: SausageService,
     private statService: StatService,
-    private router: Router) {}
+    private router: Router) {
+      this.year = new Date().getFullYear();
+  }
 
   public ngOnInit(): void {
     // Make sure we're starting with a fresh Sausage
