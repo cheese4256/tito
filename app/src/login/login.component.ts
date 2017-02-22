@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import * as lodash from 'lodash';
 
@@ -17,6 +17,9 @@ import { StatService } from '../common/service/stat.service';
 export class LoginComponent {
   // public properties
   public currentSausage: Sausage;
+  public rememberMe: boolean;
+  @ViewChild('username')
+  private _usernameInput: any;
 
   public constructor(private authenticationService: AuthenticationService,
     private sausageService: SausageService,
@@ -26,6 +29,10 @@ export class LoginComponent {
   public ngOnInit(): void {
     // Make sure we're starting with a fresh Sausage
     this.currentSausage = this.sausageService.getNewSausage();
+  }
+
+  public ngAfterViewInit(): void {
+    this._usernameInput.nativeElement.focus();
   }
 
   public google(): void {
