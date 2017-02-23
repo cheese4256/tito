@@ -21,6 +21,7 @@ import { TeamsComponent } from './teams/teams.component';
 // services
 import { AuthenticationService } from './common/service/authentication.service';
 import { DeploymentContextService } from './common/service/deployment-context.service';
+import { JwtService } from './common/service/jwt.service';
 import { ProfileService } from './common/service/profile.service';
 import { SausageService } from './common/service/sausage.service';
 import { StatService } from './common/service/stat.service';
@@ -50,6 +51,7 @@ import { LoggedInGuard } from './common/guard/logged-in.guard';
   providers: [
     AuthenticationService,
     DeploymentContextService,
+    JwtService,
     LoggedInGuard,
     ProfileService,
     SausageService,

@@ -4,6 +4,7 @@ public class Test {
 	private String val1;
 	private int val2;
 	private String val3;
+	private String token;
 
 	public Test() {
 		this.val1 = "val1";
@@ -33,5 +34,13 @@ public class Test {
 
 	public void setVal3(String v) {
 		this.val3 = v;
+	}
+
+	public String getToken() {
+		return this.token;
+	}
+
+	public void setToken(String jwt) {
+		this.token = jwt;
 	}
 }

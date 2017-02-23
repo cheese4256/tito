@@ -8,6 +8,7 @@ export interface Sausage extends ModelBase {
   lastName: string;
   displayName: string;
   googleId: string;
+  username: string;
   password: string;
   credential: Credential;
 }

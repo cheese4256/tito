@@ -1,4 +1,4 @@
-<div class="tito_header">
+<div class="tito_header" *ngIf="isAuthenticated()">
   <div class="row">
     <div class="col-1 tito_app_title">
       <a href="/">Tito</a>
@@ -12,10 +12,11 @@
     <div class="col-1">
       <a routerLink="teams">Teams</a>
     </div>
-    <div class="col-1" *ngIf="!isAuthenticated()">
+    <!-- <div class="col-1" *ngIf="!isAuthenticated()">
       <a routerLink="login">Login</a>
     </div>
-    <div class="col-1" *ngIf="isAuthenticated()">
+    <div class="col-1" *ngIf="isAuthenticated()"> -->
+    <div class="col-1">
       <a routerLink="logout">Logout</a>
     </div>
   </div>

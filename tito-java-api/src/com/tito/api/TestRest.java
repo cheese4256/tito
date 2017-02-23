@@ -1,4 +1,4 @@
-package com.tito.rest;
+package com.tito.api;
 
 import java.io.IOException;
 import java.io.PrintWriter;

@@ -1,16 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 // service imports
-import { AuthenticationService } from '../common/service/authentication.service';
+import { JwtService } from '../common/service/jwt.service';
 
 @Component({
   selector: 'header',
   templateUrl: './header.component.html'
 })
 export class HeaderComponent {
-  public constructor(protected _authenticationService: AuthenticationService) {}
+  public constructor(protected _jwtService: JwtService) {}
 
   public isAuthenticated(): boolean {
-    return this._authenticationService.isAuthenticated();
+    return this._jwtService.isAuthenticated();
   }
 }
