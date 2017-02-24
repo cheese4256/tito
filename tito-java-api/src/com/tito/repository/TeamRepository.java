@@ -8,4 +8,8 @@ public interface TeamRepository {
 
 	List<Team> findAllTeams();
 
+	Team findTeamById(String teamId);
+
+	void create(Team team);
+
 }

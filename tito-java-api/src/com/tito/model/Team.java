@@ -2,15 +2,25 @@ package com.tito.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.tito.model.Sausage;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @XmlRootElement
 public class Team {
+	private String id;
 	private String name;
 	private Sausage sausage;
 	private int totalHomeruns;
 
 	public Team() {
+	}
+
+	@JsonIgnore
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getName() {

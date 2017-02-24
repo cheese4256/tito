@@ -14,6 +14,7 @@ public class TeamRepositoryStub implements TeamRepository {
 	@Override
 	public List<Team> findAllTeams() {
 	
+// TODO: Database
 		List<Team> teams = new ArrayList<Team>();
 
 		for (int i = 0; i < 2; i++ ) {
@@ -27,4 +28,18 @@ public class TeamRepositoryStub implements TeamRepository {
 		return teams;
 	}
 
+	public Team findTeamById(String teamId) {
+// TODO: Database
+		Team team = new Team();
+		team.setId("123");
+		team.setName("TODO: Team 123");
+		team.setSausage(new Sausage("123", "TODO: Sausage 123"));
+		team.setTotalHomeruns(123);
+		return team;
+	}
+
+	@Override
+	public void create(Team team) {
+		// TODO: Insert into database
+	}
 }
