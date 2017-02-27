@@ -7,4 +7,9 @@ public class SausageRepositoryStub implements SausageRepository {
 	public void create(Sausage sausage) {
 		// TODO: Insert into database
 	}
+
+	@Override
+	public void update(Sausage sausage) {
+		// TODO Auto-generated method stub
+	}
 }

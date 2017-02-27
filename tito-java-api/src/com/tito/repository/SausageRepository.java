@@ -6,4 +6,6 @@ public interface SausageRepository {
 
 	void create(Sausage sausage);
 
+	void update(Sausage sausage);
+
 }

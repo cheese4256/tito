@@ -11,6 +11,7 @@ public class Sausage {
 	private String id;
 	private String username;
 	private String token;
+	private Role[] roles;
 
 	public Sausage() {
 	}
@@ -47,5 +48,13 @@ public class Sausage {
 
 	public void setToken(String jwt) {
 		this.token = jwt;
+	}
+
+	public Role[] getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Role[] roles) {
+		this.roles = roles;
 	}
 }

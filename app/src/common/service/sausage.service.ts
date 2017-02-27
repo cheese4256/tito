@@ -3,6 +3,7 @@ import { ServiceBase } from './_service.base';
 // vendor imports
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
+import { AuthHttp } from 'angular2-jwt';
 
 // model imports
 import { Sausage } from '../../../../tito-node-api/src/model/identity/sausage';
@@ -17,9 +18,10 @@ export class SausageService extends ServiceBase {
   private _currentSausage: Sausage = null;
 
   public constructor(protected _http: Http,
+    protected _authHttp: AuthHttp,
     protected _jwtService: JwtService,
     protected _deploymentContextService: DeploymentContextService) {
-      super(_http, _deploymentContextService, 'sausages');
+      super(_authHttp, _deploymentContextService, 'sausages');
     }
 
   // public methods

@@ -32,7 +32,7 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/java-jwt-0.0.1-SNAPSHOT.jar">
+	<classpathentry kind="lib" path="lib/java-jwt-0.0.1-SNAPSHOT.jar" sourcepath="C:/dev/hmm/java-jwt-master">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>

@@ -1,7 +1,8 @@
 import { NgModule, enableProdMode } from '@angular/core';
+import { AuthHttp, provideAuth, AuthConfig } from 'angular2-jwt';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { Http, HttpModule, RequestOptions } from '@angular/http';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 // app & routing
@@ -32,6 +33,15 @@ import { LoggedInGuard } from './common/guard/logged-in.guard';
 
 let providers: any[] = [
   AuthenticationService,
+  {
+    provide: AuthHttp,
+    useFactory: function(http: Http, opts: RequestOptions): AuthHttp {
+      return new AuthHttp(new AuthConfig({
+        noJwtError: true
+      }), http, opts);
+    },
+    deps: [Http, RequestOptions]
+  },
   DeploymentContextService,
   JwtService,
   LoggedInGuard,

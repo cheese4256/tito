@@ -5,6 +5,7 @@ import { ServiceBase } from './_service.base';
 // vendor imports
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
+import { AuthHttp } from 'angular2-jwt';
 
 // service imports
 import { DeploymentContextService } from './deployment-context.service';
@@ -22,8 +23,9 @@ export class StatService extends ServiceBase {
   private oauthSessionHandle: string;
 
   public constructor(private http: Http,
+    protected _authHttp: AuthHttp,
     private _deploymentContextService: DeploymentContextService) {
-      super(http, _deploymentContextService, 'stats');
+      super(_authHttp, _deploymentContextService, 'stats');
 
       this.clientId = 'dj0yJmk9MEtpcU9DaGRHS3JnJmQ9WVdrOVRtZFdaMDFvTm04bWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD0yOA--';
       this.consumerSecret = 'c1368ffbecf6661dd6da5d75230cc5587da3b411' + '%26';
