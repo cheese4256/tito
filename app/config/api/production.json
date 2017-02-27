@@ -1,7 +1,10 @@
 {
-  "ENV": "production",
-  "API_HOST": "http://www.liquidelvis.com",
-  "API_PATH": "/tito-java-api",
-  "APP_HOST": "http://www.liquidelvis.com",
-  "APP_ROOT": "tito2"
+  "app": {
+  },
+  "authentication": {
+    "algorithm": "",
+    "secret": "",
+    "expiresInSeconds": 6000,
+    "ignorePaths": []
+  }
 }
