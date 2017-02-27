@@ -1,11 +1,11 @@
-import { NgModule }      from '@angular/core';
+import { NgModule, enableProdMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule }   from '@angular/router';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 // app & routing
-import { AppComponent }  from './app.component';
+import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 
 // top level page
@@ -30,6 +30,24 @@ import { TeamService } from './common/service/team.service';
 // guards
 import { LoggedInGuard } from './common/guard/logged-in.guard';
 
+let providers: any[] = [
+  AuthenticationService,
+  DeploymentContextService,
+  JwtService,
+  LoggedInGuard,
+  ProfileService,
+  SausageService,
+  StatService,
+  TeamService
+];
+
+let environment = process.env.ENV;
+if (environment === 'development') {
+  providers.push({provide: LocationStrategy, useClass: HashLocationStrategy});
+}
+
+enableProdMode();
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -48,16 +66,7 @@ import { LoggedInGuard } from './common/guard/logged-in.guard';
     RegistrationComponent,
     TeamsComponent
   ],
-  providers: [
-    AuthenticationService,
-    DeploymentContextService,
-    JwtService,
-    LoggedInGuard,
-    ProfileService,
-    SausageService,
-    StatService,
-    TeamService
-  ],
+  providers: providers,
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
