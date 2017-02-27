@@ -1,7 +1,10 @@
 {
-  "ENV": "development",
-  "API_HOST": "http://localhost:8088",
-  "API_PATH": "/tito-java-api",
-  "APP_HOST": "http://localhost:8080",
-  "APP_ROOT": ""
+  "app": {
+  },
+  "authentication": {
+    "algorithm": "",
+    "secret": "",
+    "expiresInSeconds": 6000,
+    "ignorePaths": []
+  }
 }
