@@ -7,8 +7,11 @@
     "start": "npm run start-app",
     "build-app": "rimraf dist && webpack --progress --profile --bail",
     "start-app": "webpack-dev-server --progress --port 8080",
+    "package": "npm run build && npm run copy-descriptor",
+    "package-prod": "npm run build-prod && npm run copy-descriptor",
     "build": "rimraf dist && webpack --config config/build/webpack.stage.js --progress --profile --bail",
     "build-prod": "rimraf dist && webpack --config config/build/webpack.prod.js --progress --profile --bail",
+    "copy-descriptor": "cp -r config/deploy/WEB-INF/ dist/",
     "postinstall": "typings install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
