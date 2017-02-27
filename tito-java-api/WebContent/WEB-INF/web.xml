@@ -42,17 +42,4 @@
     <servlet-name>Jersey Web Application</servlet-name>
     <url-pattern>/api/*</url-pattern>
   </servlet-mapping>
-
-<!--   <servlet> -->
-<!--     <servlet-name>TestRest</servlet-name> -->
-<!--     <servlet-class> -->
-<!--   		com.tito.api.TestRest -->
-<!--   	</servlet-class> -->
-<!--     <load-on-startup>1</load-on-startup> -->
-<!--   </servlet> -->
-
-<!--   <servlet-mapping> -->
-<!--     <servlet-name>TestRest</servlet-name> -->
-<!--     <url-pattern>/TestRest</url-pattern> -->
-<!--   </servlet-mapping> -->
 </web-app>
