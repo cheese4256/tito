@@ -1,7 +1,10 @@
 {
-  "ENV": "staging",
-  "API_HOST": "http://localhost:8088",
-  "API_PATH": "/tito-java-api",
-  "APP_HOST": "http://localhost:8088",
-  "APP_ROOT": "tito2"
+  "app": {
+  },
+  "authentication": {
+    "algorithm": "",
+    "secret": "",
+    "expiresInSeconds": 6000,
+    "ignorePaths": []
+  }
 }

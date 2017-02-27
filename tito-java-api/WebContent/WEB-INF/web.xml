@@ -13,7 +13,11 @@
   </filter>
   <filter-mapping>
   	<filter-name>CORS</filter-name>
-  	<servlet-name>TestRest</servlet-name>
+  	<url-pattern>/api/sausages/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+  	<filter-name>CORS</filter-name>
+  	<url-pattern>/api/teams/*</url-pattern>
   </filter-mapping>
   <filter-mapping>
   	<filter-name>CORS</filter-name>

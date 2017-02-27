@@ -19,7 +19,7 @@ export class SausageService extends ServiceBase {
   public constructor(protected _http: Http,
     protected _jwtService: JwtService,
     protected _deploymentContextService: DeploymentContextService) {
-      super(_http, _deploymentContextService, 'sausage');
+      super(_http, _deploymentContextService, 'sausages');
     }
 
   // public methods
