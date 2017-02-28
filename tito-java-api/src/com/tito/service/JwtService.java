@@ -9,22 +9,37 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.tito.config.TitoApplication;
 import com.tito.model.Role;
 import com.tito.model.Sausage;
 
 public class JwtService {
 	String issuer;
 	String secret;
-//	String algorithm;
 	int expiresInSeconds;
 
 	public JwtService() {
-// TODO: Use a real secret, issuer, etc
-// TODO: Get config values for issuer, secret, algorithm, expires
 		this.issuer = "tito";
+		String jwtIssuer = TitoApplication.properties.getProperty("jwt.issuer");
+		if (jwtIssuer != null && !jwtIssuer.isEmpty()) {
+			this.issuer = jwtIssuer;
+		}
+
 		this.secret = "fuentes";
-//		this.algorithm = Algorithm.HMAC256;
+		String jwtSecret = TitoApplication.properties.getProperty("jwt.secret");
+		if (jwtSecret != null && !jwtSecret.isEmpty()) {
+			this.secret = jwtSecret;
+		}
+
 		this.expiresInSeconds = 600;
+		String jwtExpiresInSeconds = TitoApplication.properties.getProperty("jwt.secret");
+		if (jwtExpiresInSeconds != null && !jwtExpiresInSeconds.isEmpty()) {
+			try {
+				this.expiresInSeconds = Integer.parseInt(jwtExpiresInSeconds);
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public String jwtSign(Sausage sausage) {
@@ -42,10 +57,12 @@ public class JwtService {
 			token = JWT.create()
 				.withIssuer(this.issuer)
 				.withSubject(sausage.getId())
+				// There are a variety of ways to create custom claims, each
+				// taking a name, then a value of various types, including
+				// arrays (could maybe use for role names?)
+//				.withClaim(name, value)
 				.withArrayClaim("roles", roleNameList.toArray(roleNames))
 				.withExpiresAt(calendar.getTime())
-// TODO: There are a variety of ways to create custom claims, each taking a name, then a value of various types, including arrays (could maybe use for role names?)
-//				.withClaim(name, value)
 				.sign(Algorithm.HMAC256(this.secret));
 
 		} catch (JWTCreationException exception){

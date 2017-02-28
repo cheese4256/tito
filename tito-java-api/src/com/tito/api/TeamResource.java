@@ -1,6 +1,5 @@
 package com.tito.api;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -23,15 +22,22 @@ import com.tito.model.Role;
 import com.tito.model.Sausage;
 import com.tito.model.Team;
 import com.tito.repository.TeamRepository;
-import com.tito.repository.TeamRepositoryStub;
 import com.tito.service.JwtService;
 
 @Path("teams") // http://<server>:<port>/api/teams
 public class TeamResource {
 
-// TODO: Dependency injection
-	private TeamRepository teamRepository = new TeamRepositoryStub();
-	private JwtService jwtService = new JwtService();
+	@Context
+	private TeamRepository teamRepository;
+	@Context
+	private JwtService jwtService;
+
+	public TeamResource() {}
+
+	public TeamResource(TeamRepository teamRepository, JwtService jwtService) {
+		this.teamRepository = teamRepository;
+		this.jwtService = jwtService;
+	}
 
 // TODO: JWTs!!!!!!!!!!!!!!!
 

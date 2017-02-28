@@ -4,20 +4,30 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import com.tito.model.Role;
 import com.tito.model.Sausage;
 import com.tito.repository.SausageRepository;
-import com.tito.repository.SausageRepositoryStub;
 import com.tito.service.JwtService;
 
 @Path("sausages") // http://<server>:<port>/api/teams
 public class SausageResource {
 
-// TODO: Dependency injection
-	private SausageRepository sausageRepository = new SausageRepositoryStub();
-	private JwtService jwtService = new JwtService();
+	@Context
+	private SausageRepository sausageRepository;
+	@Context
+	private JwtService jwtService;
+
+	public SausageResource() {}
+
+	public SausageResource(SausageRepository sausageRepository, JwtService jwtService) {
+		this.sausageRepository = sausageRepository;
+		this.jwtService = jwtService;
+	}
+
+// TODO: Consider going asynchronous
 
 	@POST
 	// http://<server>:<port>/api/sausages/login
