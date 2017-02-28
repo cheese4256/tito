@@ -7,7 +7,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
-import com.tito.model.Role;
 import com.tito.model.Sausage;
 import com.tito.repository.SausageRepository;
 import com.tito.service.JwtService;
@@ -53,9 +52,6 @@ public class SausageResource {
 // TODO: If the credentials are NOT valid, update the DB (last attempt maybe?), return a 401
 
 		if (sausage != null) {
-			// TODO: For now, just a test role
-			Role[] roles = {new Role("admin")};
-			sausage.setRoles(roles);
 	
 			String token = jwtService.jwtSign(sausage);
 	

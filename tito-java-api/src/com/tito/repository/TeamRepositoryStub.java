@@ -33,7 +33,7 @@ public class TeamRepositoryStub implements TeamRepository {
 		Team team = new Team();
 		team.setId("123");
 		team.setName("TODO: Team 123");
-		team.setSausage(new Sausage("123", "TODO: Sausage 123"));
+		team.setSausage(new Sausage(123, "TODO: Sausage 123"));
 		team.setTotalHomeruns(123);
 		return team;
 	}

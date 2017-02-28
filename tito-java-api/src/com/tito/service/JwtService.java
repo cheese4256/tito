@@ -56,7 +56,7 @@ public class JwtService {
 
 			token = JWT.create()
 				.withIssuer(this.issuer)
-				.withSubject(sausage.getId())
+				.withSubject(String.valueOf(sausage.getId()))
 				// There are a variety of ways to create custom claims, each
 				// taking a name, then a value of various types, including
 				// arrays (see the example below for role names)

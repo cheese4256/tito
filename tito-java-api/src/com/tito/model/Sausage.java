@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 @XmlRootElement
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Sausage {
-	private String id;
+	private int id;
 	private String username;
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private String password;
@@ -27,17 +27,17 @@ public class Sausage {
 		this.username = username;
 	}
 
-	public Sausage(String id, String username) {
+	public Sausage(int id, String username) {
 		this.id = id;
 		this.username = username;
 	}
 
 	@JsonIgnore
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
