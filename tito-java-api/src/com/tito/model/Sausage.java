@@ -4,12 +4,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @XmlRootElement
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Sausage {
 	private String id;
 	private String username;
+	@JsonProperty(access = Access.WRITE_ONLY)
+	private String password;
+	private String contestId;
+	private String email;
+	private String name;
 	private String token;
 	private Role[] roles;
 
@@ -40,6 +47,38 @@ public class Sausage {
 
 	public void setUsername(String name) {
 		this.username = name;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getContestId() {
+		return contestId;
+	}
+
+	public void setContestId(String contestId) {
+		this.contestId = contestId;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getToken() {

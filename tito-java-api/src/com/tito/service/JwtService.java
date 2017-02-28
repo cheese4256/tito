@@ -32,7 +32,7 @@ public class JwtService {
 		}
 
 		this.expiresInSeconds = 600;
-		String jwtExpiresInSeconds = TitoApplication.properties.getProperty("jwt.secret");
+		String jwtExpiresInSeconds = TitoApplication.properties.getProperty("jwt.expiresInSeconds");
 		if (jwtExpiresInSeconds != null && !jwtExpiresInSeconds.isEmpty()) {
 			try {
 				this.expiresInSeconds = Integer.parseInt(jwtExpiresInSeconds);
@@ -59,7 +59,7 @@ public class JwtService {
 				.withSubject(sausage.getId())
 				// There are a variety of ways to create custom claims, each
 				// taking a name, then a value of various types, including
-				// arrays (could maybe use for role names?)
+				// arrays (see the example below for role names)
 //				.withClaim(name, value)
 				.withArrayClaim("roles", roleNameList.toArray(roleNames))
 				.withExpiresAt(calendar.getTime())

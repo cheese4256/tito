@@ -52,8 +52,10 @@ export class LoginComponent {
     }
     this.sausageService.login(this.currentSausage)
       .then((result: Sausage) => {
-        if (result) {
+        if (result.username) {
           this.router.navigate(['']);
+        } else {
+          this.router.navigate(['login']);
         }
       });
     // if (!this.currentSausage) {

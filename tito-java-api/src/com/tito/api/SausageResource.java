@@ -11,6 +11,7 @@ import com.tito.model.Role;
 import com.tito.model.Sausage;
 import com.tito.repository.SausageRepository;
 import com.tito.service.JwtService;
+import com.tito.service.SausageService;
 
 @Path("sausages") // http://<server>:<port>/api/teams
 public class SausageResource {
@@ -19,12 +20,17 @@ public class SausageResource {
 	private SausageRepository sausageRepository;
 	@Context
 	private JwtService jwtService;
+	@Context
+	private SausageService sausageService;
 
 	public SausageResource() {}
 
-	public SausageResource(SausageRepository sausageRepository, JwtService jwtService) {
+	public SausageResource(SausageRepository sausageRepository,
+			JwtService jwtService,
+			SausageService sausageService) {
 		this.sausageRepository = sausageRepository;
 		this.jwtService = jwtService;
+		this.sausageService = sausageService;
 	}
 
 // TODO: Consider going asynchronous
@@ -37,7 +43,8 @@ public class SausageResource {
 	public Sausage login(Sausage sausage) {
 
 // TODO: Attempt to log the sausage in.
-// TODO: If the credentials are valid, create a JWT, update the DB (last accessed, whatever), set the token, and return the sausage
+		sausage = sausageService.doLogin(sausage);
+// TODO: If the credentials are valid, create a JWT, update the DB (last accessed, whatever), set the token, *populate* and return the sausage
 //       * So what goes on the JWT?
 //         o sub
 //         o exp?
@@ -45,23 +52,27 @@ public class SausageResource {
 //           - roles could/should come from the DB
 // TODO: If the credentials are NOT valid, update the DB (last attempt maybe?), return a 401
 
-		// TODO: For now, just a test role
-		Role[] roles = {new Role("admin")};
-		sausage.setRoles(roles);
-
-		String token = jwtService.jwtSign(sausage);
-
-		if (token != null) {
-
-			sausage.setToken(token);
-// TODO: Create? This isn't registration, the sausage should already exist, right? 
-//			sausageRepository.create(sausage);
-			sausageRepository.update(sausage);
-
-			return sausage;
-
-		} else {
-			return null;
+		if (sausage != null) {
+			// TODO: For now, just a test role
+			Role[] roles = {new Role("admin")};
+			sausage.setRoles(roles);
+	
+			String token = jwtService.jwtSign(sausage);
+	
+			if (token != null) {
+	
+				sausage.setToken(token);
+	// TODO: Create? This isn't registration, the sausage should already exist, right? 
+	//			sausageRepository.create(sausage);
+				sausageRepository.update(sausage);
+	
+				return sausage;
+	
+			} else {
+				return null;
+			}
 		}
+
+		return null;
 	}
 }
