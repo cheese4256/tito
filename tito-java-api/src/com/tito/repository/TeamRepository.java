@@ -4,12 +4,5 @@ import java.util.List;
 
 import com.tito.model.Team;
 
-public interface TeamRepository {
-
-	List<Team> findAllTeams();
-
-	Team findTeamById(String teamId);
-
-	void create(Team team);
-
+public interface TeamRepository extends TitoRepository<Team> {
 }

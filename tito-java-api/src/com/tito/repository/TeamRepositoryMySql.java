@@ -7,11 +7,11 @@ import com.tito.db.DbConnection;
 import com.tito.model.Sausage;
 import com.tito.model.Team;
 
-public class TeamRepositoryStub implements TeamRepository {
+public class TeamRepositoryMySql implements TeamRepository {
 
 	private DbConnection dbConnection = null;
 
-	public TeamRepositoryStub(DbConnection dbConnection) {
+	public TeamRepositoryMySql(DbConnection dbConnection) {
 		this.dbConnection = dbConnection;
 	}
 

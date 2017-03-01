@@ -91,7 +91,7 @@ public class TeamResource {
 				}
 			}
 			if (isAdmin) {
-				return teamRepository.findAllTeams();
+				return teamRepository.find();
 			}
 		}
 
@@ -103,7 +103,7 @@ public class TeamResource {
 	@Path("{teamId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Team getTeam(@PathParam("teamId") String teamId) {
-		return teamRepository.findTeamById(teamId);
+		return teamRepository.findById(Integer.parseInt(teamId));
 	}
 
 	@GET
@@ -111,7 +111,7 @@ public class TeamResource {
 	@Path("{teamId}/sausage")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Sausage getTeamSausage(@PathParam("teamId") String teamId) {
-		Team team = teamRepository.findTeamById(teamId);
+		Team team = teamRepository.findById(Integer.parseInt(teamId));
 		return team != null ? team.getSausage() : null;
 	}
 }

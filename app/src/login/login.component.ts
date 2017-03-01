@@ -22,14 +22,14 @@ export class LoginComponent {
   @ViewChild('usernameInput')
   private _usernameInput: any;
 
-  public constructor(private sausageService: SausageService,
-    private router: Router) {
+  public constructor(private _sausageService: SausageService,
+    private _router: Router) {
       this.year = new Date().getFullYear();
   }
 
   public ngOnInit(): void {
     // Make sure we're starting with a fresh Sausage
-    this.currentSausage = this.sausageService.getNewSausage();
+    this.currentSausage = this._sausageService.getNewSausage();
   }
 
   public ngAfterViewInit(): void {
@@ -48,23 +48,23 @@ export class LoginComponent {
       // This indicates the SausageService is down. We need it, though, so
       // navigate back to the login page, and provide a message to the sausage.
       // TODO: Populate errors, and display them on the login page
-      this.router.navigate(['login']);
+      this._router.navigate(['login']);
     }
-    this.sausageService.login(this.currentSausage)
+    this._sausageService.login(this.currentSausage)
       .then((result: Sausage) => {
         if (result.username) {
-          this.router.navigate(['']);
+          this._router.navigate(['']);
         } else {
-          this.router.navigate(['login']);
+          location.reload();
         }
       });
     // if (!this.currentSausage) {
-    //   this.router.navigate(['login']);
+    //   this._router.navigate(['login']);
     // }
     // this.authenticationService.login(this.currentSausage)
     //   .then((result: any) => {
     //     if (result) {
-    //       this.router.navigate(['']);
+    //       this._router.navigate(['']);
     //     }
     //   });
   }

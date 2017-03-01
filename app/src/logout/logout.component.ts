@@ -14,6 +14,6 @@ export class LogoutComponent {
     }
 
   public logout(): void {
-    this._jwtService.logout()
+    this._jwtService.logout();
   }
 }
