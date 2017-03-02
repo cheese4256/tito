@@ -29,7 +29,11 @@ public class TeamRepositoryMySql implements TeamRepository {
 		for (int i = 0; i < 2; i++ ) {
 			Team team = new Team();
 			team.setName("TODO: Team Name: " + i);
-			team.setSausage(new Sausage("TODO: Sausage Name: " + i));
+			Sausage sausage = new Sausage("TODO: Sausage Name: " + i);
+			sausage.setContestId("scr");
+			sausage.setEmail("sausage" + i + "@scr.org");
+			sausage.setName("Sausage Name " + i);
+			team.setSausage(sausage);
 			team.setTotalHomeruns(i * i);
 			teams.add(team);
 		}
@@ -42,7 +46,11 @@ public class TeamRepositoryMySql implements TeamRepository {
 		Team team = new Team();
 		team.setId("123");
 		team.setName("TODO: Team 123");
-		team.setSausage(new Sausage(123, "TODO: Sausage 123"));
+		Sausage sausage = new Sausage(123, "TODO: Sausage 123");
+		sausage.setContestId("scr");
+		sausage.setEmail("sausage123@scr.org");
+		sausage.setName("Sausage Name 123");
+		team.setSausage(sausage);
 		team.setTotalHomeruns(123);
 		return team;
 	}
