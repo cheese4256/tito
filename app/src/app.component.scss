@@ -1,5 +1,6 @@
 //@import "./_common/component/_style/index.scss";
 
+@import "./admin/admin.component.scss";
 @import "./header/header.component.scss";
 @import "./home/home.component.scss";
 @import "./login/login.component.scss";
@@ -12,4 +13,11 @@
     text-align: center;
     background-color: $light-blue;
   }
+}
+.no-padding {
+  padding-left: 0;
+  padding-right: 0;
+}
+.full-width {
+  width: 100%;
 }

@@ -19,6 +19,14 @@
   	<filter-name>CORS</filter-name>
   	<url-pattern>/api/teams/*</url-pattern>
   </filter-mapping>
+  <filter-mapping>
+  	<filter-name>CORS</filter-name>
+  	<url-pattern>/sausage/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+  	<filter-name>CORS</filter-name>
+  	<url-pattern>/team/*</url-pattern>
+  </filter-mapping>
 
   <servlet>
     <servlet-name>Jersey Web Application</servlet-name>
@@ -26,6 +34,10 @@
     <init-param>
     	<param-name>jersey.config.server.provider.packages</param-name>
     	<param-value>com.tito.api</param-value>
+    </init-param>
+    <init-param>
+    	<param-name>javax.ws.rs.Application</param-name>
+    	<param-value>com.tito.config.TitoApplication</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>

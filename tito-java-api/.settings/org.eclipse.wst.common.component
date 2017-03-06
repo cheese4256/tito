@@ -2,6 +2,7 @@
     <wb-module deploy-name="tito-java-api">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/resources"/>
         <property name="context-root" value="tito-java-api"/>
         <property name="java-output-path" value="/tito-java-api/bin/WEB-INF/classes"/>
     </wb-module>

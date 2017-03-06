@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Headers } from '@angular/http';
+import { AuthHttp } from 'angular2-jwt';
 
 import { AuthenticationService } from './authentication.service'
 
 @Injectable()
 export class ProfileService {
-  public constructor(private http: Http,
+  public constructor(private _authHttp: AuthHttp,
     private _authenticationService: AuthenticationService) { }
 
   public getProfile(): Promise<any> {
@@ -13,7 +14,7 @@ export class ProfileService {
 
     this._authenticationService.setAuthorizationHeader(headers);
 
-    return this.http.get('/profile', { headers })
+    return this._authHttp.get('/profile', { headers })
       .toPromise()
       .then(res => res.json());
     // return this.http

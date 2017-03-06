@@ -1,14 +1,16 @@
-import { NgModule }      from '@angular/core';
+import { NgModule, enableProdMode } from '@angular/core';
+import { AuthHttp, provideAuth, AuthConfig } from 'angular2-jwt';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule }   from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { RouterModule }   from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { Http, HttpModule, RequestOptions } from '@angular/http';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 // app & routing
-import { AppComponent }  from './app.component';
+import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 
 // top level page
+import { AdminComponent } from './admin/admin.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -20,6 +22,7 @@ import { TeamsComponent } from './teams/teams.component';
 // services
 import { AuthenticationService } from './common/service/authentication.service';
 import { DeploymentContextService } from './common/service/deployment-context.service';
+import { JwtService } from './common/service/jwt.service';
 import { ProfileService } from './common/service/profile.service';
 import { SausageService } from './common/service/sausage.service';
 import { StatService } from './common/service/stat.service';
@@ -27,6 +30,33 @@ import { TeamService } from './common/service/team.service';
 
 // guards
 import { LoggedInGuard } from './common/guard/logged-in.guard';
+
+let providers: any[] = [
+  AuthenticationService,
+  {
+    provide: AuthHttp,
+    useFactory: function(http: Http, opts: RequestOptions): AuthHttp {
+      return new AuthHttp(new AuthConfig({
+        noJwtError: true
+      }), http, opts);
+    },
+    deps: [Http, RequestOptions]
+  },
+  DeploymentContextService,
+  JwtService,
+  LoggedInGuard,
+  ProfileService,
+  SausageService,
+  StatService,
+  TeamService
+];
+
+let environment = process.env.ENV;
+if (environment === 'development') {
+  providers.push({provide: LocationStrategy, useClass: HashLocationStrategy});
+}
+
+enableProdMode();
 
 @NgModule({
   imports: [
@@ -36,6 +66,7 @@ import { LoggedInGuard } from './common/guard/logged-in.guard';
     routing
   ],
   declarations: [
+    AdminComponent,
     AppComponent,
     HomeComponent,
     HeaderComponent,
@@ -45,15 +76,7 @@ import { LoggedInGuard } from './common/guard/logged-in.guard';
     RegistrationComponent,
     TeamsComponent
   ],
-  providers: [
-    AuthenticationService,
-    DeploymentContextService,
-    LoggedInGuard,
-    ProfileService,
-    SausageService,
-    StatService,
-    TeamService
-  ],
+  providers: providers,
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

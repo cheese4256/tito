@@ -1,15 +1,62 @@
 <div class="tito_login">
-  <form (ngSubmit)="login()">
-    <h1>Login</h1>
-    <input type="email" name="email" placeholder="email" [(ngModel)]="currentSausage.email"/>
-    <input type="password" name="password" placeholder="password" [(ngModel)]="currentSausage.password"/>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-    <button class="btn btn-lg btn-default btn-block" type="button" (click)="google()">Google</button>
-    <!-- These buttons are just here for now to have a simple place to test -->
-    <button class="btn btn-lg btn-default btn-block" type="button" (click)="getRequestTokenAndUserAuthorization()">Get Request Token & User Authorization</button>
-    <button class="btn btn-lg btn-default btn-block" type="button" (click)="getAccessToken()">Get Access Token</button>
-    <button class="btn btn-lg btn-default btn-block" type="button" (click)="refreshAccessToken()">Refresh Access Token</button>
-    <button class="btn btn-lg btn-default btn-block" type="button" (click)="getProtectedData()">Get Protected Data</button>
-    <button class="btn btn-lg btn-default btn-block" type="button" (click)="yahooStats()">Yahoo Stats</button>
-  </form>
+  <div class="row align-items-center tito_login_main">
+    <div class="col-8 offset-sm-2">
+      <h1 class="text-center">Tito Homeruns {{year}}</h1>
+      <form (ngSubmit)="login()">
+        <div class="row mt-3">
+          <div class="col-4 text-right">Username:</div>
+          <div class="col-4 no-padding">
+            <input
+              #usernameInput
+              type="username"
+              name="username"
+              placeholder="username"
+              (keyup.enter)="submitAttempted = true"
+              [(ngModel)]="currentSausage.username"
+              tabindex="1"
+              class="full-width"/>
+          </div>
+        </div>
+        <div class="row mt-1">
+          <div class="col-4 text-right">Password:</div>
+          <div class="col-4 no-padding">
+            <input
+              type="password"
+              name="password"
+              placeholder="password"
+              (keyup.enter)="submitAttempted = true"
+              [(ngModel)]="currentSausage.password"
+              tabindex="2"
+              class="full-width"/>
+          </div>
+          <div class="col-4 text-nowrap">
+            <a href="???" tabindex="4">Forgot your password?</a>
+          </div>
+        </div>
+        <div class="row mt-1">
+          <div class="col-4 offset-sm-4 no-padding">
+            <button
+              class="btn btn-primary float-right"
+              type="submit"
+              (click)="submitAttempted = true;"
+              tabindex="3"
+              [disabled]="isSubmitDisabled()">
+            Login
+            </button>
+          </div>
+          <div class="col-4 text-nowrap">
+            <input type="checkbox" name="remember" [(ngModel)]="rememberMe" tabindex="5"/>Remember Me
+          </div>
+        </div>
+        <div class="text-center">
+          <div [hidden]="!submitAttempted">
+            <i class="ahpat_icon_input-error ahpat_registration_body_form_error_icon"></i>
+            TODO: Show on failure
+            TODO: Info icon
+            Valid credentials are required.
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
