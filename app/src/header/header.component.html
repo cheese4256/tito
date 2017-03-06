@@ -1,22 +1,23 @@
-<div class="tito_header">
+<div class="tito_header" *ngIf="isAuthenticated()">
   <div class="row">
-    <div class="col-xs-1 tito_app_title">
+    <div class="col-1 tito_app_title">
       <a href="/">Tito</a>
     </div>
-    <div class="col-xs-1 offset-xs-8">
-      <a href="/">Home</a>
+    <div class="col-1 offset-8">
+      <a routerLink="">Home</a>
     </div>
-    <!-- <div class="col-xs-1">
-      <a href="/register">Register</a>
+    <!-- <div class="col-1">
+      <a routerLink="registration">Register</a>
     </div> -->
-    <div class="col-xs-1">
-      <a href="/teams">Teams</a>
+    <div class="col-1">
+      <a routerLink="teams">Teams</a>
     </div>
-    <div class="col-xs-1" *ngIf="!isAuthenticated()">
-      <a href="/login">Login</a>
+    <!-- <div class="col-1" *ngIf="!isAuthenticated()">
+      <a routerLink="login">Login</a>
     </div>
-    <div class="col-xs-1" *ngIf="isAuthenticated()">
-      <a href="/logout">Logout</a>
+    <div class="col-1" *ngIf="isAuthenticated()"> -->
+    <div class="col-1">
+      <a routerLink="logout">Logout</a>
     </div>
   </div>
 </div>

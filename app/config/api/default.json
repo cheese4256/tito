@@ -1,0 +1,10 @@
+{
+  "app": {
+  },
+  "authentication": {
+    "algorithm": "",
+    "secret": "",
+    "expiresInSeconds": 6000,
+    "ignorePaths": []
+  }
+}

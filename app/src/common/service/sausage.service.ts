@@ -3,12 +3,13 @@ import { ServiceBase } from './_service.base';
 // vendor imports
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
+import { AuthHttp } from 'angular2-jwt';
 
 // model imports
 import { Sausage } from '../../../../tito-node-api/src/model/identity/sausage';
 
 // service imports
-import { AuthenticationService } from './authentication.service';
+import { JwtService } from '../service/jwt.service';
 import { DeploymentContextService } from './deployment-context.service';
 
 @Injectable()
@@ -17,9 +18,10 @@ export class SausageService extends ServiceBase {
   private _currentSausage: Sausage = null;
 
   public constructor(protected _http: Http,
-    protected _authenticationService: AuthenticationService,
+    protected _authHttp: AuthHttp,
+    protected _jwtService: JwtService,
     protected _deploymentContextService: DeploymentContextService) {
-      super(_http, _deploymentContextService, 'sausage');
+      super(_authHttp, _deploymentContextService, 'sausages');
     }
 
   // public methods
@@ -33,22 +35,9 @@ export class SausageService extends ServiceBase {
   }
 
   public login(sausage: Sausage): Promise<Sausage> {
-    return this._authenticationService.login(sausage)
-      .then(r => {
-        this._currentSausage = r;
-        console.log(this._currentSausage);
-        return this._currentSausage;
-      })
-      .catch(err => {
-        console.log(`Unable to login sausage: ${err}]`);
-        return err;
-      });
-    // let apiUrl = `${this._apiUrl}/login`;
-    // let headers = new Headers({'Content-Type': 'application/json'});
-    // return this._http.post(apiUrl, sausage, { headers })
-    //   .toPromise()
+    // return this._authenticationService.login(sausage)
     //   .then(r => {
-    //     this._currentSausage = r.json() as Sausage;
+    //     this._currentSausage = r;
     //     console.log(this._currentSausage);
     //     return this._currentSausage;
     //   })
@@ -56,32 +45,24 @@ export class SausageService extends ServiceBase {
     //     console.log(`Unable to login sausage: ${err}]`);
     //     return err;
     //   });
-  }
-
-  public register(sausage: Sausage): Promise<Sausage> {
-    return this._authenticationService.register(sausage)
+    let apiUrl = `${this._apiUrl}/login`;
+    let headers = new Headers({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'});
+//    let headers = new Headers({'Content-Type': 'application/json'});
+    console.log("Sending...");
+    console.log(sausage);
+    return this._http.post(apiUrl, sausage, { headers })
+      .toPromise()
       .then(r => {
-        this._currentSausage = r;
+        this._currentSausage = r.json() as Sausage;
+        console.log("Returned:");
         console.log(this._currentSausage);
+        this._jwtService.login(r);
         return this._currentSausage;
       })
       .catch(err => {
         console.log(`Unable to login sausage: ${err}]`);
         return err;
       });
-    // let apiUrl = `${this._apiUrl}/register`;
-    // let headers = new Headers({'Content-Type': 'application/json'});
-    // return this._http.post(apiUrl, sausage, { headers })
-    //   .toPromise()
-    //   .then(r => {
-    //     this._currentSausage = r.json() as Sausage;
-    //     console.log(this._currentSausage);
-    //     return this._currentSausage;
-    //   })
-    //   .catch(err => {
-    //     console.log("Unable to register sausage");
-    //     return err;
-    //   });
   }
 
   public getTestData(): Promise<string> {

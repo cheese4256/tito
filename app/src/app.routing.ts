@@ -1,6 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 
 // components
+import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
@@ -11,33 +12,35 @@ import { TeamsComponent } from './teams/teams.component';
 // services, etc.
 import { LoggedInGuard } from './common/guard/logged-in.guard';
 
-const appRoot: string = `${process.env.APP_ROOT}`;
-
 const appRoutes: Routes = [
   {
-    path: appRoot,
+    path: '',
     component: HomeComponent,
     pathMatch: 'full'
   },
   {
-    path: appRoot + '/login',
+    path: 'admin',
+    component: AdminComponent
+  },
+  {
+    path: 'login',
     component: LoginComponent
   },
   {
-    path: appRoot + '/logout',
+    path: 'logout',
     component: LogoutComponent
   },
   {
-    path: appRoot + '/profile',
+    path: 'profile',
     component: ProfileComponent,
     canActivate: [LoggedInGuard]
   },
   {
-    path: appRoot + '/registration',
+    path: 'registration',
     component: RegistrationComponent
   },
   {
-    path: appRoot + '/teams',
+    path: 'teams',
     component: TeamsComponent,
     canActivate: [LoggedInGuard]
   }

@@ -2,7 +2,8 @@ import { ServiceBase } from './_service.base';
 
 // vendor imports
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers } from '@angular/http';
+import { AuthHttp } from 'angular2-jwt';
 
 // model imports
 import { Team } from '../../../../tito-node-api/src/model/tito/team';
@@ -13,10 +14,10 @@ import { DeploymentContextService } from './deployment-context.service';
 
 @Injectable()
 export class TeamService extends ServiceBase {
-  public constructor(protected _http: Http,
+  public constructor(protected _authHttp: AuthHttp,
     protected _authenticationService: AuthenticationService,
     protected _context: DeploymentContextService) {
-      super(_http, _context, 'team');
+      super(_authHttp, _context, 'team');
   }
 
   public getTeams(): Promise<any> {
@@ -24,7 +25,7 @@ export class TeamService extends ServiceBase {
 
     this._authenticationService.setAuthorizationHeader(headers);
 
-    return this._http.get(this._apiUrl, { headers })
+    return this._authHttp.get(this._apiUrl, { headers })
       .toPromise()
       .then(res => res.json());
   }
