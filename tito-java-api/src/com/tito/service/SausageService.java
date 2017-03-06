@@ -4,19 +4,17 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import com.tito.model.Sausage;
 import com.tito.repository.SausageRepository;
-import com.tito.repository.TitoRepository;
 
-public class SausageService extends TitoServiceBase {
+public class SausageService extends TitoServiceBase<Sausage> {
 
-	public SausageService(TitoRepository repository) {
+	public SausageService(SausageRepository repository) {
 		super(repository);
-		this.repository = repository;
 	}
 
 	public Sausage doLogin(Sausage sausage) {
 		// Save off the incoming password
 		String password = sausage.getPassword();
-		sausage = ((SausageRepository)this.repository).findByUsername(sausage.getUsername());
+		sausage = this.findByUsername(sausage.getUsername());
 		if (sausage != null) {
 			// Now compare the incoming password to the hashed password in the database
 			if (BCrypt.checkpw(password, sausage.getPassword())) {
@@ -28,5 +26,9 @@ public class SausageService extends TitoServiceBase {
 			}
 		}
 		return null;
+	}
+
+	public Sausage findByUsername(String username) {
+		return ((SausageRepository)this.repository).findByUsername(username);
 	}
 }

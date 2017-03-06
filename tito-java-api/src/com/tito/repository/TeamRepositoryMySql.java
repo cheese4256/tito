@@ -3,21 +3,51 @@ package com.tito.repository;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import com.tito.config.TitoApplication;
 import com.tito.db.DbConnection;
 import com.tito.model.Sausage;
 import com.tito.model.Team;
 
 public class TeamRepositoryMySql implements TeamRepository {
 
+	private EntityManagerFactory entityManagerFactory = null;
 	private DbConnection dbConnection = null;
 
 	public TeamRepositoryMySql(DbConnection dbConnection) {
+
+    	entityManagerFactory = Persistence.createEntityManagerFactory(TitoApplication.properties.getProperty("jpa.persistence.unit.name"));
+
 		this.dbConnection = dbConnection;
 	}
 
+// TODO: Make TeamRepository either a base class, or the actual class (when JPA works), and move the EntityManager stuff in there
+//       Actually, if I can get the factory instantiated once, somewhere (TitoApplication?), then put it back there
+	protected EntityManager getEntityManager() {
+		return entityManagerFactory.createEntityManager();
+	}
+
 	@Override
-	public void create(Team team) {
+	public Team create(Team team) {
 		// TODO: Insert into database
+// TODO: If I get JPA working, get rid of the *MySql classes, and push all that out to the *Repository classes
+		EntityManager entityManager = this.getEntityManager();
+		try {
+
+			entityManager.getTransaction().begin();
+			entityManager.persist(team);
+			entityManager.getTransaction().commit();
+
+			return team;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			entityManager.getTransaction().rollback();
+		}
+		return null;
 	}
 
 	@Override
@@ -34,7 +64,7 @@ public class TeamRepositoryMySql implements TeamRepository {
 			sausage.setEmail("sausage" + i + "@scr.org");
 			sausage.setName("Sausage Name " + i);
 			team.setSausage(sausage);
-			team.setTotalHomeruns(i * i);
+			team.setHomeruns(i * i);
 			teams.add(team);
 		}
 
@@ -51,14 +81,14 @@ public class TeamRepositoryMySql implements TeamRepository {
 		sausage.setEmail("sausage123@scr.org");
 		sausage.setName("Sausage Name 123");
 		team.setSausage(sausage);
-		team.setTotalHomeruns(123);
+		team.setHomeruns(123);
 		return team;
 	}
 
 	@Override
-	public void update(Team model) {
+	public Team update(Team model) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override

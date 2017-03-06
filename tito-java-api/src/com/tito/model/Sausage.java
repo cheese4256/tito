@@ -1,15 +1,31 @@
 package com.tito.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import com.sun.istack.internal.NotNull;
 
+@Entity
 @XmlRootElement
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Sausage {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@NotNull
+	@Column(nullable = false)
 	private int id;
 	private String username;
 	@JsonProperty(access = Access.WRITE_ONLY)
@@ -17,8 +33,13 @@ public class Sausage {
 	private String contestId;
 	private String email;
 	private String name;
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="sausage")
+	private List<Team> teams;
+	@Transient
 	private String token;
+	@Transient
 	private Role[] roles;
+	private String roleNames;
 
 	public Sausage() {
 	}
@@ -77,6 +98,14 @@ public class Sausage {
 		return name;
 	}
 
+	public List<Team> getTeams() {
+		return teams;
+	}
+
+	public void setTeams(List<Team> teams) {
+		this.teams = teams;
+	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -95,5 +124,18 @@ public class Sausage {
 
 	public void setRoles(Role[] roles) {
 		this.roles = roles;
+	}
+
+	public String getRoleNames() {
+		StringBuilder sb = new StringBuilder();
+		if (this.roles != null && this.roles.length > 0) {
+			sb.append(this.roles[0].getName());
+			for (int i = 1; i < this.roles.length; i++) {
+				sb.append(';');
+				Role role = this.roles[i];
+				sb.append(role.getName());
+			}
+		}
+		return sb.toString();
 	}
 }

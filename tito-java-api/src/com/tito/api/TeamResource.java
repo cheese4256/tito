@@ -21,21 +21,18 @@ import com.auth0.jwt.interfaces.Claim;
 import com.tito.model.Role;
 import com.tito.model.Sausage;
 import com.tito.model.Team;
-import com.tito.repository.TeamRepository;
 import com.tito.service.JwtService;
+import com.tito.service.TeamService;
 
 @Path("teams") // http://<server>:<port>/api/teams
-public class TeamResource {
+public class TeamResource extends TitoResource<Team> {
 
-	@Context
-	private TeamRepository teamRepository;
-	@Context
 	private JwtService jwtService;
 
 	public TeamResource() {}
 
-	public TeamResource(TeamRepository teamRepository, JwtService jwtService) {
-		this.teamRepository = teamRepository;
+	public TeamResource(TeamService teamService, JwtService jwtService) {
+		super(teamService);
 		this.jwtService = jwtService;
 	}
 
@@ -49,11 +46,9 @@ public class TeamResource {
 	public Team createTeam(Team team) {
 
 //		System.out.println(team.getName());
-//		System.out.println(team.getTotalHomeruns());
+//		System.out.println(team.getHomeruns());
 
-		teamRepository.create(team);
-
-		return team;
+		return service.create(team);
 	}
 
 	@POST
@@ -67,9 +62,9 @@ public class TeamResource {
 //		team.setId("123");
 		team.setName(formParams.getFirst("name"));
 //		team.setSausage(new Sausage("123", "TODO: Sausage 123"));
-		team.setTotalHomeruns(Integer.parseInt(formParams.getFirst("totalHomeruns")));
+		team.setHomeruns(Integer.parseInt(formParams.getFirst("homeruns")));
 
-		teamRepository.create(team);
+		team = service.create(team);
 
 		return team;
 	}
@@ -91,7 +86,7 @@ public class TeamResource {
 				}
 			}
 			if (isAdmin) {
-				return teamRepository.find();
+				return service.find();
 			}
 		}
 
@@ -103,7 +98,7 @@ public class TeamResource {
 	@Path("{teamId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Team getTeam(@PathParam("teamId") String teamId) {
-		return teamRepository.findById(Integer.parseInt(teamId));
+		return service.findById(Integer.parseInt(teamId));
 	}
 
 	@GET
@@ -111,7 +106,7 @@ public class TeamResource {
 	@Path("{teamId}/sausage")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Sausage getTeamSausage(@PathParam("teamId") String teamId) {
-		Team team = teamRepository.findById(Integer.parseInt(teamId));
+		Team team = service.findById(Integer.parseInt(teamId));
 		return team != null ? team.getSausage() : null;
 	}
 }

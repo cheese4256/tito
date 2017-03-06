@@ -4,32 +4,22 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import com.tito.model.Sausage;
-import com.tito.repository.SausageRepository;
 import com.tito.service.JwtService;
 import com.tito.service.SausageService;
 
 @Path("sausages") // http://<server>:<port>/api/teams
-public class SausageResource {
+public class SausageResource extends TitoResource<Sausage> {
 
-	@Context
-	private SausageRepository sausageRepository;
-	@Context
 	private JwtService jwtService;
-	@Context
-	private SausageService sausageService;
 
 	public SausageResource() {}
 
-	public SausageResource(SausageRepository sausageRepository,
-			JwtService jwtService,
-			SausageService sausageService) {
-		this.sausageRepository = sausageRepository;
+	public SausageResource(SausageService sausageService, JwtService jwtService) {
+		super(sausageService);
 		this.jwtService = jwtService;
-		this.sausageService = sausageService;
 	}
 
 // TODO: Consider going asynchronous
@@ -42,7 +32,7 @@ public class SausageResource {
 	public Sausage login(Sausage sausage) {
 
 // TODO: Attempt to log the sausage in.
-		sausage = sausageService.doLogin(sausage);
+		sausage = ((SausageService)service).doLogin(sausage);
 // TODO: If the credentials are valid, create a JWT, update the DB (last accessed, whatever), set the token, *populate* and return the sausage
 //       * So what goes on the JWT?
 //         o sub
@@ -58,10 +48,6 @@ public class SausageResource {
 			if (token != null) {
 	
 				sausage.setToken(token);
-	// TODO: Create? This isn't registration, the sausage should already exist, right? 
-	//			sausageRepository.create(sausage);
-				sausageRepository.update(sausage);
-	
 				return sausage;
 	
 			} else {

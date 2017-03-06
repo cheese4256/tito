@@ -16,8 +16,9 @@ public class TeamRepositoryStub implements TeamRepository {
 	}
 
 	@Override
-	public void create(Team team) {
+	public Team create(Team team) {
 		// TODO: Insert into database
+		return null;
 	}
 
 	@Override
@@ -30,7 +31,7 @@ public class TeamRepositoryStub implements TeamRepository {
 			Team team = new Team();
 			team.setName("TODO: Team Name: " + i);
 			team.setSausage(new Sausage("TODO: Sausage Name: " + i));
-			team.setTotalHomeruns(i * i);
+			team.setHomeruns(i * i);
 			teams.add(team);
 		}
 
@@ -43,14 +44,14 @@ public class TeamRepositoryStub implements TeamRepository {
 		team.setId("123");
 		team.setName("TODO: Team 123");
 		team.setSausage(new Sausage(123, "TODO: Sausage 123"));
-		team.setTotalHomeruns(123);
+		team.setHomeruns(123);
 		return team;
 	}
 
 	@Override
-	public void update(Team model) {
+	public Team update(Team model) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override

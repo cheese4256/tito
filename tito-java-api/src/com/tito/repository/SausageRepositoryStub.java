@@ -14,8 +14,9 @@ public class SausageRepositoryStub implements SausageRepository {
 	}
 
 	@Override
-	public void create(Sausage sausage) {
+	public Sausage create(Sausage sausage) {
 		// TODO: Insert into database
+		return null;
 	}
 
 	@Override
@@ -37,8 +38,9 @@ public class SausageRepositoryStub implements SausageRepository {
 	}
 
 	@Override
-	public void update(Sausage sausage) {
+	public Sausage update(Sausage sausage) {
 		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
