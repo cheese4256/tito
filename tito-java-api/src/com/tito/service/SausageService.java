@@ -7,8 +7,8 @@ import com.tito.repository.SausageRepository;
 
 public class SausageService extends TitoServiceBase<Sausage> {
 
-	public SausageService(SausageRepository repository) {
-		super(repository);
+	public SausageService(SausageRepository repository, JwtService jwtService) {
+		super(repository, jwtService);
 	}
 
 	public Sausage doLogin(Sausage sausage) {

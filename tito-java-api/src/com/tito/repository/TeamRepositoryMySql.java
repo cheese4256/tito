@@ -74,7 +74,7 @@ public class TeamRepositoryMySql implements TeamRepository {
 	public Team findById(int id) {
 // TODO: Database
 		Team team = new Team();
-		team.setId("123");
+		team.setId(123);
 		team.setName("TODO: Team 123");
 		Sausage sausage = new Sausage(123, "TODO: Sausage 123");
 		sausage.setContestId("scr");

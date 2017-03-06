@@ -5,7 +5,7 @@ import com.tito.repository.TeamRepository;
 
 public class TeamService extends TitoServiceBase<Team> {
 
-	public TeamService(TeamRepository repository) {
-		super(repository);
+	public TeamService(TeamRepository repository, JwtService jwtService) {
+		super(repository, jwtService);
 	}
 }

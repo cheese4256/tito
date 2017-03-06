@@ -43,6 +43,7 @@ public class SausageResource extends TitoResource<Sausage> {
 
 		if (sausage != null) {
 	
+// TODO: Push the JWT stuff down into the services
 			String token = jwtService.jwtSign(sausage);
 	
 			if (token != null) {

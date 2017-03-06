@@ -41,7 +41,7 @@ public class TeamRepositoryStub implements TeamRepository {
 	public Team findById(int id) {
 // TODO: Database
 		Team team = new Team();
-		team.setId("123");
+		team.setId(123);
 		team.setName("TODO: Team 123");
 		team.setSausage(new Sausage(123, "TODO: Sausage 123"));
 		team.setHomeruns(123);
