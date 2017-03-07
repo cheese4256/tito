@@ -1,5 +1,7 @@
 package com.tito.service;
 
+import java.util.Date;
+
 import org.mindrot.jbcrypt.BCrypt;
 
 import com.tito.model.Sausage;
@@ -15,11 +17,24 @@ public class SausageService extends TitoServiceBase<Sausage> {
 		// Save off the incoming password
 		String password = sausage.getPassword();
 		sausage = this.findByUsername(sausage.getUsername());
+
 		if (sausage != null) {
+
+			Date now = new Date();
+			sausage.setLastUpdatedAt(now);
+			sausage.setLastUpdatedBy(sausage.getId());
+			this.repository.update(sausage);
+
 			// Now compare the incoming password to the hashed password in the database
 			if (BCrypt.checkpw(password, sausage.getPassword())) {
 				System.out.println("SUCCESSFUL LOGIN: " + sausage.getUsername());
-				return sausage;
+				String token = jwtService.jwtSign(sausage);
+				if (token != null) {
+					sausage.setToken(token);
+					return sausage;
+				} else {
+					return null;
+				}
 			} else {
 				System.out.println("FAILED LOGIN: " + sausage.getUsername());
 				return null;

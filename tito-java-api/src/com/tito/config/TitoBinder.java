@@ -25,7 +25,7 @@ public class TitoBinder extends AbstractBinder {
 	private SausageService sausageService = new SausageService(sausageRepository, jwtService);
 	private TeamService teamService = new TeamService(teamRepository, jwtService);
 	// Resources
-	private SausageResource sausageResource = new SausageResource(sausageService, jwtService);
+	private SausageResource sausageResource = new SausageResource(sausageService);
 	private TeamResource teamResource = new TeamResource(teamService, jwtService);
 
 	@Override
