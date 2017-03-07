@@ -13,6 +13,16 @@ public class SausageService extends TitoServiceBase<Sausage> {
 		super(repository, jwtService);
 	}
 
+	public Sausage create(Sausage sausage) {
+// TODO: Require authentication? For now leave it open. How would I bootstrap the admin account? Does JPA help somehow?
+		return super.create(sausage);
+	}
+
+	public Sausage findByUsername(String username) {
+// TODO: Require authentication?
+		return ((SausageRepository)this.repository).findByUsername(username);
+	}
+
 	public Sausage doLogin(Sausage sausage) {
 		// Save off the incoming password
 		String password = sausage.getPassword();
@@ -41,9 +51,5 @@ public class SausageService extends TitoServiceBase<Sausage> {
 			}
 		}
 		return null;
-	}
-
-	public Sausage findByUsername(String username) {
-		return ((SausageRepository)this.repository).findByUsername(username);
 	}
 }

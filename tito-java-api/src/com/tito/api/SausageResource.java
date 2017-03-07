@@ -23,6 +23,15 @@ public class SausageResource extends TitoResource<Sausage> {
 // TODO: Consider going asynchronous
 
 	@POST
+	// http://<server>:<port>/api/sausages/sausage
+	@Path("sausage")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Sausage create(Sausage sausage) {
+		return service.create(sausage);
+	}
+
+	@POST
 	// http://<server>:<port>/api/sausages/login
 	@Path("login")
 	@Consumes(MediaType.APPLICATION_JSON)
