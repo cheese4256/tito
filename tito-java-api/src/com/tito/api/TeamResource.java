@@ -37,17 +37,14 @@ public class TeamResource extends TitoResource<Team> {
 	}
 
 // TODO: JWTs!!!!!!!!!!!!!!!
+// TODO: Push the JWT stuff down into the services
 
 	@POST
 	// http://<server>:<port>/api/teams/team
 	@Path("team")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Team createTeam(Team team) {
-
-//		System.out.println(team.getName());
-//		System.out.println(team.getHomeruns());
-
+	public Team createTeam(@HeaderParam(HttpHeaders.AUTHORIZATION) String authorization, Team team) {
 		return service.create(team);
 	}
 

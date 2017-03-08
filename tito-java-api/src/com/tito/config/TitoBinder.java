@@ -22,10 +22,10 @@ public class TitoBinder extends AbstractBinder {
 	private TeamRepository teamRepository = new TeamRepositoryMySql(dbConnection);
 	// Services
 	private JwtService jwtService = new JwtService();
-	private SausageService sausageService = new SausageService(sausageRepository);
-	private TeamService teamService = new TeamService(teamRepository);
+	private SausageService sausageService = new SausageService(sausageRepository, jwtService);
+	private TeamService teamService = new TeamService(teamRepository, jwtService);
 	// Resources
-	private SausageResource sausageResource = new SausageResource(sausageService, jwtService);
+	private SausageResource sausageResource = new SausageResource(sausageService);
 	private TeamResource teamResource = new TeamResource(teamService, jwtService);
 
 	@Override

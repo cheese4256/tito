@@ -5,21 +5,48 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import com.tito.config.TitoApplication;
 import com.tito.db.DbConnection;
 import com.tito.model.Role;
 import com.tito.model.Sausage;
 
 public class SausageRepositoryMySql implements SausageRepository {
 
+	private EntityManagerFactory entityManagerFactory = null;
 	private DbConnection dbConnection = null;
 
 	public SausageRepositoryMySql(DbConnection dbConnection) {
+
+    	entityManagerFactory = Persistence.createEntityManagerFactory(TitoApplication.properties.getProperty("jpa.persistence.unit.name"));
+
 		this.dbConnection = dbConnection;
+	}
+
+// TODO: Make TeamRepository either a base class, or the actual class (when JPA works), and move the EntityManager stuff in there
+//	     Actually, if I can get the factory instantiated once, somewhere (TitoApplication?), then put it back there
+	protected EntityManager getEntityManager() {
+		return entityManagerFactory.createEntityManager();
 	}
 
 	@Override
 	public Sausage create(Sausage sausage) {
-		// TODO: Insert into database
+		EntityManager entityManager = this.getEntityManager();
+		try {
+
+			entityManager.getTransaction().begin();
+			entityManager.persist(sausage);
+			entityManager.getTransaction().commit();
+
+			return sausage;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			entityManager.getTransaction().rollback();
+		}
 		return null;
 	}
 
@@ -37,6 +64,17 @@ public class SausageRepositoryMySql implements SausageRepository {
 
 	@Override
 	public Sausage findByUsername(String username) {
+		EntityManager entityManager = this.getEntityManager();
+		@SuppressWarnings("rawtypes")
+		List sausages = entityManager.createQuery("select s from Sausage s").getResultList();
+		if (!sausages.isEmpty()) {
+			Sausage sausage = (Sausage)sausages.get(0);
+			return sausage;
+		} else {
+			return null;
+		}
+	}
+	public Sausage findByUsername0(String username) {
 		try {
 			Connection connection = dbConnection.getConnection();
 			if (connection != null) {
@@ -76,7 +114,19 @@ public class SausageRepositoryMySql implements SausageRepository {
 
 	@Override
 	public Sausage update(Sausage sausage) {
-		// TODO Auto-generated method stub
+		EntityManager entityManager = this.getEntityManager();
+		try {
+
+			entityManager.getTransaction().begin();
+			entityManager.persist(sausage);
+			entityManager.getTransaction().commit();
+
+			return sausage;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			entityManager.getTransaction().rollback();
+		}
 		return null;
 	}
 

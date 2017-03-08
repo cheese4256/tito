@@ -17,6 +17,7 @@ public class JwtService {
 	String issuer;
 	String secret;
 	int expiresInSeconds;
+	Sausage currentSausage;
 
 	public JwtService() {
 		this.issuer = "tito";
@@ -65,14 +66,19 @@ public class JwtService {
 				.withExpiresAt(calendar.getTime())
 				.sign(Algorithm.HMAC256(this.secret));
 
+			this.currentSausage = sausage;
+
 		} catch (JWTCreationException exception){
 			// Invalid Signing configuration / Couldn't convert Claims.
+			this.currentSausage = null;
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			this.currentSausage = null;
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			this.currentSausage = null;
 		}
 		return token;
 	}
@@ -97,5 +103,9 @@ public class JwtService {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public Sausage getCurrentSausage() {
+		return this.currentSausage;
 	}
 }
