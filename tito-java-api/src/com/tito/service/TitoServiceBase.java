@@ -22,6 +22,18 @@ public class TitoServiceBase<T extends TitoModelBase> {
 		return this.repository.create(model);
 	}
 
+	public T updateOrCreate(T model) {
+		int id = model.getId();
+		if (id > 0) {
+			T existingModel = this.findById(id);
+// TODO: Do I need to be more sophisticated about merging the new model here?
+			if (existingModel != null) {
+				return this.update(model);
+			}
+		}
+		return this.create(model);
+	}
+
 	public List<T> find() {
 		return this.repository.find();
 	}
@@ -69,11 +81,12 @@ public class TitoServiceBase<T extends TitoModelBase> {
 
 	private boolean isAuthorizedForModel(T model) {
 		Sausage currentSausage = this.jwtService.getCurrentSausage();
-		int currentSausageId = currentSausage != null ? currentSausage.getId() : null;
-		if (model.getId() == currentSausageId) {
-			return true;
-		} else {
-			return false;
+		if (currentSausage != null) {
+			int currentSausageId = currentSausage.getId();
+			if (model.getId() == currentSausageId) {
+				return true;
+			}
 		}
+		return false;
 	}
 }

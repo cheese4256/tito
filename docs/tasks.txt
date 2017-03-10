@@ -2,9 +2,9 @@
 * Tito
   o Admin
     x Ensure JPA doesn't wipe out the DB with every deployment, restart, whatever
-    - Create Sausage (without teams)
-    - Upsert Sausage (without teams)
-    - Update sausage
+    x Create Sausage (without teams)
+    x Upsert Sausage (without teams)
+    x Update sausage
     - Create Team
     - Add teams to Sausage
   o Login

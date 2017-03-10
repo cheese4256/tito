@@ -49,8 +49,8 @@ public class SausageRepositoryMySql implements SausageRepository {
 
 	@Override
 	public Sausage findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager entityManager = this.getEntityManager();
+		return entityManager.find(Sausage.class, id);
 	}
 
 	@Override

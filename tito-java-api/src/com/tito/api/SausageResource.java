@@ -32,6 +32,15 @@ public class SausageResource extends TitoResource<Sausage> {
 	}
 
 	@POST
+	// http://<server>:<port>/api/sausages/updateorcreate
+	@Path("updateorcreate")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Sausage updateOrCreate(Sausage sausage) {
+		return service.updateOrCreate(sausage);
+	}
+
+	@POST
 	// http://<server>:<port>/api/sausages/login
 	@Path("login")
 	@Consumes(MediaType.APPLICATION_JSON)

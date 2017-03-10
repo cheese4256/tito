@@ -10,7 +10,6 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.internal.NotNull;
 
 @MappedSuperclass
@@ -35,7 +34,6 @@ public abstract class TitoModelBase {
 		this.id = id;
 	}
 
-	@JsonIgnore
 	public int getId() {
 		return id;
 	}
