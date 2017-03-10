@@ -65,10 +65,9 @@ public class SausageRepositoryMySql implements SausageRepository {
 	@Override
 	public Sausage findByUsername(String username) {
 		EntityManager entityManager = this.getEntityManager();
-		@SuppressWarnings("rawtypes")
-		List sausages = entityManager.createQuery("select s from Sausage s").getResultList();
+		List<Sausage> sausages = entityManager.createQuery("select s from Sausage s", Sausage.class).getResultList();
 		if (!sausages.isEmpty()) {
-			Sausage sausage = (Sausage)sausages.get(0);
+			Sausage sausage = sausages.get(0);
 			return sausage;
 		} else {
 			return null;
