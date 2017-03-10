@@ -1,0 +1,15 @@
+
+* Tito
+  o Admin
+    x Ensure JPA doesn't wipe out the DB with every deployment, restart, whatever
+    - Create Sausage (without teams)
+    - Upsert Sausage (without teams)
+    - Update sausage
+    - Create Team
+    - Add teams to Sausage
+  o Login
+    x Find by username, login, & update an *existing* Sausage
+    - Forgot username
+    - Forgot password
+  o Logout
+  o 

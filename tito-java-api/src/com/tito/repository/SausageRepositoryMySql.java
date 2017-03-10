@@ -71,7 +71,7 @@ public class SausageRepositoryMySql implements SausageRepository {
 		try {
 
 			entityManager.getTransaction().begin();
-			entityManager.persist(sausage);
+			entityManager.merge(sausage);
 			entityManager.getTransaction().commit();
 
 			return sausage;

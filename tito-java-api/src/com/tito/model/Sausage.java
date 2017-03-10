@@ -3,7 +3,10 @@ package com.tito.model;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -26,10 +29,9 @@ public class Sausage extends TitoModelBase {
 	private List<Team> teams;
 	@Transient
 	private String token;
-	@Transient
-	private Role[] roles;
-	@SuppressWarnings("unused")
-	private String roleNames;
+	@ElementCollection
+	@CollectionTable(name = "sausage_roles", joinColumns = @JoinColumn(name = "id"))
+	private List<Role> roles;
 
 	public Sausage() {
 	}
@@ -99,24 +101,11 @@ public class Sausage extends TitoModelBase {
 		this.token = jwt;
 	}
 
-	public Role[] getRoles() {
+	public List<Role> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(Role[] roles) {
+	public void setRoles(List<Role> roles) {
 		this.roles = roles;
-	}
-
-	public String getRoleNames() {
-		StringBuilder sb = new StringBuilder();
-		if (this.roles != null && this.roles.length > 0) {
-			sb.append(this.roles[0].getName());
-			for (int i = 1; i < this.roles.length; i++) {
-				sb.append(';');
-				Role role = this.roles[i];
-				sb.append(role.getName());
-			}
-		}
-		return sb.toString();
 	}
 }

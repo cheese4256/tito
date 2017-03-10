@@ -3,6 +3,7 @@ package com.tito.service;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
@@ -50,8 +51,11 @@ public class JwtService {
 			calendar.add(Calendar.SECOND, this.expiresInSeconds);
 
 			ArrayList<String> roleNameList = new ArrayList<String>();
-			for (Role role : sausage.getRoles()) {
-				roleNameList.add(role.getName());
+			List<Role> roles = sausage.getRoles();
+			if (roles != null) {
+				for (Role role : roles) {
+					roleNameList.add(role.getName());
+				}
 			}
 			String[] roleNames = new String[roleNameList.size()];
 

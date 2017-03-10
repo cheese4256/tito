@@ -1,12 +1,14 @@
 package com.tito.model;
 
+import javax.persistence.Embeddable;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @XmlRootElement
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Role extends TitoModelBase {
+@Embeddable
+public class Role {
 	private String name;
 
 	public Role() {
