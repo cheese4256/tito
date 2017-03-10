@@ -4,8 +4,6 @@ import org.glassfish.hk2.utilities.binding.AbstractBinder;
 
 import com.tito.api.SausageResource;
 import com.tito.api.TeamResource;
-import com.tito.db.DbConnection;
-import com.tito.db.MySqlConnection;
 import com.tito.repository.SausageRepository;
 import com.tito.repository.SausageRepositoryMySql;
 import com.tito.repository.TeamRepository;
@@ -15,11 +13,9 @@ import com.tito.service.SausageService;
 import com.tito.service.TeamService;
 
 public class TitoBinder extends AbstractBinder {
-	// Miscellaneous
-	private DbConnection dbConnection = new MySqlConnection();
 	// Repositories
-	private SausageRepository sausageRepository = new SausageRepositoryMySql(dbConnection);
-	private TeamRepository teamRepository = new TeamRepositoryMySql(dbConnection);
+	private SausageRepository sausageRepository = new SausageRepositoryMySql();
+	private TeamRepository teamRepository = new TeamRepositoryMySql();
 	// Services
 	private JwtService jwtService = new JwtService();
 	private SausageService sausageService = new SausageService(sausageRepository, jwtService);
@@ -40,7 +36,5 @@ public class TitoBinder extends AbstractBinder {
         // Resources
         bind(sausageResource).to(SausageResource.class);
         bind(teamResource).to(TeamResource.class);
-        // Miscellaneous
-        bind(dbConnection).to(DbConnection.class);
     }
 }

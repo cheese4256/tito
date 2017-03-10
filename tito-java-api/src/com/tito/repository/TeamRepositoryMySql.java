@@ -8,20 +8,15 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import com.tito.config.TitoApplication;
-import com.tito.db.DbConnection;
 import com.tito.model.Sausage;
 import com.tito.model.Team;
 
 public class TeamRepositoryMySql implements TeamRepository {
 
 	private EntityManagerFactory entityManagerFactory = null;
-	private DbConnection dbConnection = null;
 
-	public TeamRepositoryMySql(DbConnection dbConnection) {
-
+	public TeamRepositoryMySql() {
     	entityManagerFactory = Persistence.createEntityManagerFactory(TitoApplication.properties.getProperty("jpa.persistence.unit.name"));
-
-		this.dbConnection = dbConnection;
 	}
 
 // TODO: Make TeamRepository either a base class, or the actual class (when JPA works), and move the EntityManager stuff in there

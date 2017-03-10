@@ -2,16 +2,11 @@ package com.tito.repository;
 
 import java.util.List;
 
-import com.tito.db.DbConnection;
 import com.tito.model.Sausage;
 
 public class SausageRepositoryStub implements SausageRepository {
 
-	private DbConnection dbConnection = null;
-
-	public SausageRepositoryStub(DbConnection dbConnection) {
-		this.dbConnection = dbConnection;
-	}
+	public SausageRepositoryStub() {}
 
 	@Override
 	public Sausage create(Sausage sausage) {

@@ -3,17 +3,12 @@ package com.tito.repository;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.tito.db.DbConnection;
 import com.tito.model.Sausage;
 import com.tito.model.Team;
 
 public class TeamRepositoryStub implements TeamRepository {
 
-	private DbConnection dbConnection = null;
-
-	public TeamRepositoryStub(DbConnection dbConnection) {
-		this.dbConnection = dbConnection;
-	}
+	public TeamRepositoryStub() {}
 
 	@Override
 	public Team create(Team team) {
