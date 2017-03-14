@@ -5,12 +5,15 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @XmlRootElement
 public class Team extends TitoModelBase {
+	@NotNull
 	private String name;
+	@NotNull
 	@ManyToOne (cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="SAUSAGEID", nullable=false)
 	private Sausage sausage;
