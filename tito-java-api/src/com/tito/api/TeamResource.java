@@ -66,6 +66,15 @@ public class TeamResource extends TitoResource<Team> {
 		return team;
 	}
 
+	@POST
+	// http://<server>:<port>/api/teams/updateorcreate
+	@Path("updateorcreate")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Team updateOrCreate(Team team) {
+		return service.updateOrCreate(team);
+	}
+
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Team> getAllTeams(@Context HttpHeaders headers, @HeaderParam(HttpHeaders.AUTHORIZATION) String authorization) {
