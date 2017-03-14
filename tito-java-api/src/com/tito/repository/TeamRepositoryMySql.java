@@ -2,10 +2,13 @@ package com.tito.repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 
 import com.tito.config.TitoApplication;
 import com.tito.model.Sausage;
@@ -38,6 +41,12 @@ public class TeamRepositoryMySql implements TeamRepository {
 
 			return team;
 
+		} catch (ConstraintViolationException e) {
+			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+			for (ConstraintViolation<?> violation : violations) {
+				System.out.println(violation.getRootBeanClass().getSimpleName() + "." + violation.getPropertyPath() + ": " + violation.getMessage());
+			}
+			entityManager.getTransaction().rollback();
 		} catch (Exception e) {
 			e.printStackTrace();
 			entityManager.getTransaction().rollback();

@@ -38,11 +38,11 @@ public class SausageRepositoryMySql implements SausageRepository {
 			return sausage;
 
 		} catch (ConstraintViolationException e) {
+// TODO: When the repository stuff gets abstracted properly, push the constraint violation handling into a base class
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
 			for (ConstraintViolation<?> violation : violations) {
-				System.out.println(violation.getPropertyPath() + ": " + violation.getMessage());
+				System.out.println(violation.getRootBeanClass().getSimpleName() + "." + violation.getPropertyPath() + ": " + violation.getMessage());
 			}
-//			e.printStackTrace();
 			entityManager.getTransaction().rollback();
 		} catch (Exception e) {
 			e.printStackTrace();

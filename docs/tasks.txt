@@ -12,10 +12,13 @@
     x Upsert Sausage (without teams)
     x Update sausage
     - Create Team
+It saves a new Sausage, doesn't update the existing Sausage
       ~ Validate
       	` name
       	` sausage ID
-    - Add teams to Sausage
+    - Create Sausage (with team)
+    - Create Sausage (with teams)
+    - Add team(s) to Sausage
   o Login
     x Find by username, login, & update an *existing* Sausage
     - Forgot username

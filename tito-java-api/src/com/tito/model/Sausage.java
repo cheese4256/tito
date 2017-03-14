@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -22,13 +23,15 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Sausage extends TitoModelBase {
 	@NotNull
+	@Column(nullable=false)
 	private String username;
-	@NotNull
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private String password;
 	@NotNull
+	@Column(nullable=false)
 	private String contestId;
 	@NotNull
+	@Column(nullable=false)
 	@Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\."
             + "[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@"
             + "(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9]"
@@ -36,6 +39,7 @@ public class Sausage extends TitoModelBase {
             message = "{invalid.email}")
 	private String email;
 	@NotNull
+	@Column(nullable=false)
 	private String name;
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="sausage")
 	private List<Team> teams;

@@ -31,6 +31,12 @@ public class SausageService extends TitoServiceBase<Sausage> {
 	public Sausage doLogin(Sausage sausage) {
 		// Save off the incoming password
 		String password = sausage.getPassword();
+		if (password == null) {
+// TODO: Get messages from a properties file
+			System.out.println("FAILED LOGIN: A password is required.");
+			return null;
+		}
+
 		sausage = this.findByUsername(sausage.getUsername());
 
 		if (sausage != null) {

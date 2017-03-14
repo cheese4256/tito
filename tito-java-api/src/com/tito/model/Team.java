@@ -1,6 +1,7 @@
 package com.tito.model;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -12,6 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Team extends TitoModelBase {
 	@NotNull
+	@Column(nullable=false)
 	private String name;
 	@NotNull
 	@ManyToOne (cascade=CascadeType.ALL, fetch=FetchType.EAGER)
