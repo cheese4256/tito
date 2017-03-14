@@ -56,6 +56,7 @@ public class TitoServiceBase<T extends TitoModelBase> {
 		}
 	}
 
+// TODO: Make the create & update fields not nullable in the DB, so required here
 	protected void updateCreateFields(T model) {
 		int id = jwtService.getCurrentSausage() != null
 				 ? jwtService.getCurrentSausage().getId()

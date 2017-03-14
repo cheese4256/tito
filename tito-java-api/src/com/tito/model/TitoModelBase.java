@@ -10,7 +10,7 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.sun.istack.internal.NotNull;
+import javax.validation.constraints.NotNull;
 
 @MappedSuperclass
 public abstract class TitoModelBase {

@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -19,11 +21,21 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 @XmlRootElement
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Sausage extends TitoModelBase {
+	@NotNull
 	private String username;
+	@NotNull
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private String password;
+	@NotNull
 	private String contestId;
+	@NotNull
+	@Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\."
+            + "[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@"
+            + "(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9]"
+            + "(?:[a-z0-9-]*[a-z0-9])?",
+            message = "{invalid.email}")
 	private String email;
+	@NotNull
 	private String name;
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="sausage")
 	private List<Team> teams;

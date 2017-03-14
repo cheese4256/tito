@@ -44,7 +44,7 @@ public class TeamResource extends TitoResource<Team> {
 	@Path("team")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Team createTeam(@HeaderParam(HttpHeaders.AUTHORIZATION) String authorization, Team team) {
+	public Team create(@HeaderParam(HttpHeaders.AUTHORIZATION) String authorization, Team team) {
 		return service.create(team);
 	}
 
@@ -53,7 +53,7 @@ public class TeamResource extends TitoResource<Team> {
 	@Path("team")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Team createTeamParams(MultivaluedMap<String, String> formParams) {
+	public Team createFromParams(MultivaluedMap<String, String> formParams) {
 
 		Team team = new Team();
 //		team.setId("123");

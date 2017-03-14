@@ -3,9 +3,18 @@
   o Admin
     x Ensure JPA doesn't wipe out the DB with every deployment, restart, whatever
     x Create Sausage (without teams)
+      x Validate
+      	x username
+      	x password
+      	x email
+      	x name
+      	x contest ID
     x Upsert Sausage (without teams)
     x Update sausage
     - Create Team
+      ~ Validate
+      	` name
+      	` sausage ID
     - Add teams to Sausage
   o Login
     x Find by username, login, & update an *existing* Sausage
