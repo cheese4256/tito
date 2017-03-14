@@ -32,6 +32,15 @@ public class SausageResource extends TitoResource<Sausage> {
 		return service.create(sausage);
 	}
 
+	@PUT
+	// http://<server>:<port>/api/sausages/sausage
+	@Path("sausage")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Sausage update(Sausage sausage) {
+		return service.update(sausage);
+	}
+
 	@POST
 	// http://<server>:<port>/api/sausages/updateorcreate
 	@Path("updateorcreate")
@@ -39,15 +48,6 @@ public class SausageResource extends TitoResource<Sausage> {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Sausage updateOrCreate(Sausage sausage) {
 		return service.updateOrCreate(sausage);
-	}
-
-	@PUT
-	// http://<server>:<port>/api/sausages/sausage
-	@Path("update")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Sausage update(Sausage sausage) {
-		return service.update(sausage);
 	}
 
 	@POST
