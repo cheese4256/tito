@@ -2,6 +2,7 @@ package com.tito.api;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
@@ -38,6 +39,15 @@ public class SausageResource extends TitoResource<Sausage> {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Sausage updateOrCreate(Sausage sausage) {
 		return service.updateOrCreate(sausage);
+	}
+
+	@PUT
+	// http://<server>:<port>/api/sausages/sausage
+	@Path("update")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Sausage update(Sausage sausage) {
+		return service.update(sausage);
 	}
 
 	@POST

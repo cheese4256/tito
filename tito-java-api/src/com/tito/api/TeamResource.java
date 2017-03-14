@@ -5,7 +5,7 @@ import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
-import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -13,7 +13,6 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 
 import com.auth0.jwt.JWT;
@@ -39,40 +38,13 @@ public class TeamResource extends TitoResource<Team> {
 // TODO: JWTs!!!!!!!!!!!!!!!
 // TODO: Push the JWT stuff down into the services
 
-	@POST
-	// http://<server>:<port>/api/teams/team
+	@PUT
+	// http://<server>:<port>/api/team/team
 	@Path("team")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Team create(@HeaderParam(HttpHeaders.AUTHORIZATION) String authorization, Team team) {
-		return service.create(team);
-	}
-
-	@POST
-	// http://<server>:<port>/api/teams/team
-	@Path("team")
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Team createFromParams(MultivaluedMap<String, String> formParams) {
-
-		Team team = new Team();
-//		team.setId("123");
-		team.setName(formParams.getFirst("name"));
-//		team.setSausage(new Sausage("123", "TODO: Sausage 123"));
-		team.setHomeruns(Integer.parseInt(formParams.getFirst("homeruns")));
-
-		team = service.create(team);
-
-		return team;
-	}
-
-	@POST
-	// http://<server>:<port>/api/teams/updateorcreate
-	@Path("updateorcreate")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Team updateOrCreate(Team team) {
-		return service.updateOrCreate(team);
+	public Team update(Team team) {
+		return service.update(team);
 	}
 
 	@GET

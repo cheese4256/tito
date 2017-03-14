@@ -10,15 +10,15 @@
       	x name
       	x contest ID
     x Upsert Sausage (without teams)
-    x Update sausage
-    - Create Team
-It saves a new Sausage, doesn't update the existing Sausage
-      ~ Validate
-      	` name
-      	` sausage ID
     - Create Sausage (with team)
+      ~ Create Team
+        ` Validate
+      	  > name
+      	  > sausage ID
     - Create Sausage (with teams)
-    - Add team(s) to Sausage
+    - Update Sausage
+    - Update Team
+    - Update Teams
   o Login
     x Find by username, login, & update an *existing* Sausage
     - Forgot username
