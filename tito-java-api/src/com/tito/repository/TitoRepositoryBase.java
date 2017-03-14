@@ -5,7 +5,6 @@ import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.validation.ConstraintViolation;
 
 import com.tito.config.TitoApplication;
@@ -15,7 +14,7 @@ public abstract class TitoRepositoryBase<T> implements TitoRepository<T> {
 	private EntityManagerFactory entityManagerFactory = null;
 
 	public TitoRepositoryBase() {
-    	entityManagerFactory = Persistence.createEntityManagerFactory(TitoApplication.properties.getProperty("jpa.persistence.unit.name"));
+		entityManagerFactory = TitoApplication.getEntityManagerFactory();
 	}
 
 	public abstract T create(T model);
