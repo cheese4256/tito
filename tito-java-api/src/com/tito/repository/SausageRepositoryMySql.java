@@ -12,7 +12,7 @@ import javax.validation.ConstraintViolationException;
 import com.tito.config.TitoApplication;
 import com.tito.model.Sausage;
 
-public class SausageRepositoryMySql implements SausageRepository {
+public class SausageRepositoryMySql extends SausageRepository {
 
 	private EntityManagerFactory entityManagerFactory = null;
 

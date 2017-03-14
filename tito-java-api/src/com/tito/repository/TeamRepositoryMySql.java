@@ -14,7 +14,7 @@ import com.tito.config.TitoApplication;
 import com.tito.model.Sausage;
 import com.tito.model.Team;
 
-public class TeamRepositoryMySql implements TeamRepository {
+public class TeamRepositoryMySql extends TeamRepository {
 
 	private EntityManagerFactory entityManagerFactory = null;
 

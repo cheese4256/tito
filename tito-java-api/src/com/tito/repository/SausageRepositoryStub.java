@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.tito.model.Sausage;
 
-public class SausageRepositoryStub implements SausageRepository {
+public class SausageRepositoryStub extends SausageRepository {
 
 	public SausageRepositoryStub() {}
 

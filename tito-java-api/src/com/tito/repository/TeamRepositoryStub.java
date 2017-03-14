@@ -6,7 +6,7 @@ import java.util.List;
 import com.tito.model.Sausage;
 import com.tito.model.Team;
 
-public class TeamRepositoryStub implements TeamRepository {
+public class TeamRepositoryStub extends TeamRepository {
 
 	public TeamRepositoryStub() {}
 
