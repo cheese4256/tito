@@ -1,30 +1,15 @@
 package com.tito.repository;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
-import com.tito.config.TitoApplication;
 import com.tito.model.Sausage;
 
 public class SausageRepositoryMySql extends SausageRepository {
 
-	private EntityManagerFactory entityManagerFactory = null;
-
-	public SausageRepositoryMySql() {
-    	entityManagerFactory = Persistence.createEntityManagerFactory(TitoApplication.properties.getProperty("jpa.persistence.unit.name"));
-	}
-
-// TODO: Make TeamRepository either a base class, or the actual class (when JPA works), and move the EntityManager stuff in there
-//	     Actually, if I can get the factory instantiated once, somewhere (TitoApplication?), then put it back there
-	protected EntityManager getEntityManager() {
-		return entityManagerFactory.createEntityManager();
-	}
+// TODO: Actually, if I can get the factory instantiated once, somewhere (TitoApplication?), then put it back there
 
 	@Override
 	public Sausage create(Sausage sausage) {
@@ -38,15 +23,9 @@ public class SausageRepositoryMySql extends SausageRepository {
 			return sausage;
 
 		} catch (ConstraintViolationException e) {
-// TODO: When the repository stuff gets abstracted properly, push the constraint violation handling into a base class
-			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-			for (ConstraintViolation<?> violation : violations) {
-				System.out.println(violation.getRootBeanClass().getSimpleName() + "." + violation.getPropertyPath() + ": " + violation.getMessage());
-			}
-			entityManager.getTransaction().rollback();
+			handleConstraintViolations(e.getConstraintViolations(), entityManager);
 		} catch (Exception e) {
-			e.printStackTrace();
-			entityManager.getTransaction().rollback();
+			handleException(e, entityManager);
 		}
 		return null;
 	}
@@ -86,9 +65,10 @@ public class SausageRepositoryMySql extends SausageRepository {
 
 			return sausage;
 
+		} catch (ConstraintViolationException e) {
+			handleConstraintViolations(e.getConstraintViolations(), entityManager);
 		} catch (Exception e) {
-			e.printStackTrace();
-			entityManager.getTransaction().rollback();
+			handleException(e, entityManager);
 		}
 		return null;
 	}

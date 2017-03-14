@@ -19,6 +19,10 @@
     - Update Sausage
     - Update Team
     - Update Teams
+    - Delete Team
+    - Delete Sausage (with teams)
+    - Delete Sausage (with team)
+    - Delete Sausage (without teams)
   o Login
     x Find by username, login, & update an *existing* Sausage
     - Forgot username

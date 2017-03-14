@@ -1,10 +1,22 @@
 package com.tito.repository;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.validation.ConstraintViolation;
+
+import com.tito.config.TitoApplication;
 
 public abstract class TitoRepositoryBase<T> implements TitoRepository<T> {
+
+	private EntityManagerFactory entityManagerFactory = null;
+
+	public TitoRepositoryBase() {
+    	entityManagerFactory = Persistence.createEntityManagerFactory(TitoApplication.properties.getProperty("jpa.persistence.unit.name"));
+	}
 
 	public abstract T create(T model);
 
@@ -16,7 +28,19 @@ public abstract class TitoRepositoryBase<T> implements TitoRepository<T> {
 
 	public abstract void delete(T model);
 
-	protected void handleException(EntityManager entityManager) {
-		
+	protected EntityManager getEntityManager() {
+		return entityManagerFactory.createEntityManager();
+	}
+
+	protected void handleConstraintViolations(Set<ConstraintViolation<?>> violations, EntityManager entityManager) {
+		for (ConstraintViolation<?> violation : violations) {
+			System.out.println(violation.getRootBeanClass().getSimpleName() + "." + violation.getPropertyPath() + ": " + violation.getMessage());
+		}
+		entityManager.getTransaction().rollback();
+	}
+
+	protected void handleException(Exception e, EntityManager entityManager) {
+		e.printStackTrace();
+		entityManager.getTransaction().rollback();
 	}
 }
