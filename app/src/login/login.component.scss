@@ -2,5 +2,10 @@
   height: 100vh;
   &_main {
     height: 100%;
+    &_content {
+      margin: auto;
+      width: 50%;
+      max-width: 500px;
+    }
   }
 }
