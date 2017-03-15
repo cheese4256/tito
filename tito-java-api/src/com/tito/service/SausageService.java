@@ -54,7 +54,7 @@ public class SausageService extends TitoServiceBase<Sausage> {
 			this.repository.update(sausage);
 
 			// Now compare the incoming password to the hashed password in the database
-			if (BCrypt.checkpw(password, hashedPassword)) {
+			if (hashedPassword != null && BCrypt.checkpw(password, hashedPassword)) {
 				System.out.println("SUCCESSFUL LOGIN: " + sausage.getUsername());
 				String token = jwtService.jwtSign(sausage);
 				if (token != null) {
