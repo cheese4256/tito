@@ -23,9 +23,14 @@
     - Delete Sausage (with teams)
     - Delete Sausage (with team)
     - Delete Sausage (without teams)
+    - Make sure the created & updated fields are being set properly
+    - What if I want to get Team.Sausage in JSON when I get a Team directly?
+      ~ I think I need to make a service-to-service call to populate it
   o Login
     x Find by username, login, & update an *existing* Sausage
     - Forgot username
     - Forgot password
+    - When full screen the text fields are too wide; set max-width
+    - Make sure the root redirects to login, or home if already logged in
   o Logout
   o 

@@ -1,5 +1,6 @@
 package com.tito.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,6 +16,7 @@ import javax.validation.constraints.Pattern;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -41,7 +43,8 @@ public class Sausage extends TitoModelBase {
 	@NotNull
 	@Column(nullable=false)
 	private String name;
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="sausage")
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="sausage", orphanRemoval=true)
+	@JsonManagedReference
 	private List<Team> teams;
 	@Transient
 	private String token;
@@ -97,16 +100,29 @@ public class Sausage extends TitoModelBase {
 		return name;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public List<Team> getTeams() {
 		return teams;
 	}
 
 	public void setTeams(List<Team> teams) {
-		this.teams = teams;
+		for (Team team : teams) {
+			this.addTeam(team);
+		}
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void addTeam(Team team) {
+		if (this.teams == null) {
+			this.teams = new ArrayList<Team>();
+		}
+//		if (!this.teams.contains(team)) {
+//			this.teams.add(team);
+//		}
+		this.teams.add(team);
+		team.setSausage(this);
 	}
 
 	public String getToken() {

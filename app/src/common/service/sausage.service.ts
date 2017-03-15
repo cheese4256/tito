@@ -56,6 +56,9 @@ export class SausageService extends ServiceBase {
         this._currentSausage = r.json() as Sausage;
         console.log("Returned:");
         console.log(this._currentSausage);
+        if (this._currentSausage) {
+          console.log(this._currentSausage.token);
+        }
         this._jwtService.login(r);
         return this._currentSausage;
       })

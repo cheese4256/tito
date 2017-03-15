@@ -19,17 +19,17 @@ public class SausageService extends TitoServiceBase<Sausage> {
 	}
 
 	public Sausage update(Sausage sausage) {
-// TODO: Require authentication? For now leave it open. How would I bootstrap the admin account? Does JPA help somehow?
+// TODO: Require authentication? For now, yes.
 		return super.update(sausage);
 	}
 
 	public Sausage updateOrCreate(Sausage sausage) {
-// TODO: Require authentication? For now leave it open. How would I bootstrap the admin account? Does JPA help somehow?
+// TODO: Require authentication? For now, yes for update, no for create.
 		return super.updateOrCreate(sausage);
 	}
 
 	public Sausage findByUsername(String username) {
-// TODO: Require authentication?
+// TODO: Require authentication? For now, no.
 		return ((SausageRepository)this.repository).findByUsername(username);
 	}
 
@@ -46,13 +46,15 @@ public class SausageService extends TitoServiceBase<Sausage> {
 
 		if (sausage != null) {
 
+			String hashedPassword = sausage.getPassword();
+
 			Date now = new Date();
 			sausage.setLastUpdatedAt(now);
 			sausage.setLastUpdatedBy(sausage.getId());
 			this.repository.update(sausage);
 
 			// Now compare the incoming password to the hashed password in the database
-			if (BCrypt.checkpw(password, sausage.getPassword())) {
+			if (BCrypt.checkpw(password, hashedPassword)) {
 				System.out.println("SUCCESSFUL LOGIN: " + sausage.getUsername());
 				String token = jwtService.jwtSign(sausage);
 				if (token != null) {

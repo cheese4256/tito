@@ -59,10 +59,10 @@ public class SausageRepository extends TitoRepositoryBase<Sausage> {
 		try {
 
 			entityManager.getTransaction().begin();
-			entityManager.merge(sausage);
+			Sausage updatedSausage = entityManager.merge(sausage);
 			entityManager.getTransaction().commit();
 
-			return sausage;
+			return updatedSausage;
 
 		} catch (ConstraintViolationException e) {
 			handleConstraintViolations(e.getConstraintViolations(), entityManager);

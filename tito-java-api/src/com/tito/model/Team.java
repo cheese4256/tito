@@ -9,6 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @XmlRootElement
 public class Team extends TitoModelBase {
@@ -18,6 +20,7 @@ public class Team extends TitoModelBase {
 	@NotNull
 	@ManyToOne (cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="SAUSAGEID", nullable=false)
+	@JsonBackReference
 	private Sausage sausage;
 	private int homeruns;
 
