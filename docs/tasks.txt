@@ -30,7 +30,6 @@
     x Find by username, login, & update an *existing* Sausage
     - Forgot username
     - Forgot password
-    - When full screen the text fields are too wide; set max-width
     - Make sure the root redirects to login, or home if already logged in
   o Logout
   o 
