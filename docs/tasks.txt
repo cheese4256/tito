@@ -30,6 +30,6 @@
     x Find by username, login, & update an *existing* Sausage
     - Forgot username
     - Forgot password
-    - Make sure the root redirects to login, or home if already logged in
+    x Make sure the root redirects to login, or home if already logged in
   o Logout
   o 
