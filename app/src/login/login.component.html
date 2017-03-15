@@ -16,6 +16,9 @@
               tabindex="1"
               class="full-width"/>
           </div>
+          <div class="col-4 text-nowrap">
+            <input type="checkbox" name="remember" [(ngModel)]="rememberMe" tabindex="5"/>Remember My Username
+          </div>
         </div>
         <div class="row mt-1">
           <div class="col-4 text-right">Password:</div>
@@ -43,9 +46,6 @@
               [disabled]="isSubmitDisabled()">
             Login
             </button>
-          </div>
-          <div class="col-4 text-nowrap">
-            <input type="checkbox" name="remember" [(ngModel)]="rememberMe" tabindex="5"/>Remember Me
           </div>
         </div>
         <div class="text-center">

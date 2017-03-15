@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { Http, HttpModule, RequestOptions } from '@angular/http';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 // app & routing
 import { AppComponent } from './app.component';
@@ -42,6 +43,7 @@ let providers: any[] = [
     },
     deps: [Http, RequestOptions]
   },
+  CookieService,
   DeploymentContextService,
   JwtService,
   LoggedInGuard,

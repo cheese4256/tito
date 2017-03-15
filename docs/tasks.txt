@@ -3,6 +3,7 @@
   o Admin
     x Ensure JPA doesn't wipe out the DB with every deployment, restart, whatever
     x Create Sausage (without teams)
+      ~ Make sure the password gets encrypted
       x Validate
       	x username
       	x password
@@ -11,11 +12,13 @@
       	x contest ID
     x Upsert Sausage (without teams)
     - Create Sausage (with team)
+      ~ Make sure the password gets encrypted
       ~ Create Team
         ` Validate
       	  > name
       	  > sausage ID
     - Create Sausage (with teams)
+      ~ Make sure the password gets encrypted
     - Update Sausage
     - Update Team
     - Update Teams
@@ -28,8 +31,10 @@
       ~ I think I need to make a service-to-service call to populate it
   o Login
     x Find by username, login, & update an *existing* Sausage
+    x Remember username
     - Forgot username
     - Forgot password
     x Make sure the root redirects to login, or home if already logged in
+    - Show errors on failure, client & server
   o Logout
   o 
